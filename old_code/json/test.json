@@ -1,0 +1,44 @@
+{
+    "name": "fdsgh",
+    "surname": "dsf",
+    "birthday": "14.08.1983",
+    "sex": "male",
+    "phone": "12345",
+    "email": "jude.smiley.python@gmail.com",
+    "address": "sdafhgh",
+    "user_language": "English",
+    "short_description": "As a skilled and motivated individual with experience in diverse roles, I am confident that I can make a valuable contribution to your team.",
+    "experience": [
+        {
+            "title": "sadf",
+            "description": "adsfsdhg",
+            "company": "dasfdshg",
+            "date_start": "12.12.2021",
+            "date_end": "21.12.2021"
+        }
+    ],
+    "education": [
+        {
+            "title": "sdaf",
+            "description": "dasfsd",
+            "school": "dsafgh",
+            "date_start": "12.12.2021",
+            "date_end": "12.12.2021"
+        }
+    ],
+    "hobbies": [
+        {
+            "hobby": "adsfdsd"
+        }
+    ],
+    "skills": [
+        {
+            "skill": "dwafsg"
+        }
+    ],
+    "languages": [
+        {
+            "language": "English"
+        }
+    ]
+}
