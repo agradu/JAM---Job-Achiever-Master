@@ -13,3 +13,6 @@ class Simulation(models.Model):
     json_file = models.TextField(null=True, blank=True)
     review = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.application_id.position} - {self.application_id.company} ({self.created_at})"
