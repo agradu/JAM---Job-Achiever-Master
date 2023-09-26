@@ -1,9 +1,9 @@
-from .models import User, Company
+from .models import Users, Company
 from rest_framework import serializers
 
-class UserSerialazer(serializers.HyperlinkedModelSerializer):
+class UsersSerialazer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
+        model = Users
         fields = ['first_name', 'last_name', 'email']
 
 class CompanySerialazer(serializers.HyperlinkedModelSerializer):

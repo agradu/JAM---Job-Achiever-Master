@@ -18,7 +18,7 @@ class Users(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.user
+        return self.username
     
 class Educations(models.Model):
     user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
