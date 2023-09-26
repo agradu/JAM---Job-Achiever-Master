@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class Languages(models.Model):
+class Language(models.Model):
   language = models.CharField(max_length=100)
 
-class Genders(models.Model):
+class Gender(models.Model):
   gender = models.CharField(max_length=50)
 
-class Statuses(models.Model):
+class Status(models.Model):
   status = models.CharField(max_length=100)

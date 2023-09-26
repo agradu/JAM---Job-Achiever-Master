@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Gender",
+            name="Company",
             fields=[
                 (
                     "id",
@@ -21,11 +21,11 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("gender", models.CharField(max_length=50)),
+                ("company_name", models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name="Language",
+            name="User",
             fields=[
                 (
                     "id",
@@ -36,22 +36,9 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("language", models.CharField(max_length=100)),
-            ],
-        ),
-        migrations.CreateModel(
-            name="Status",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                ("status", models.CharField(max_length=100)),
+                ("first_name", models.CharField(max_length=30)),
+                ("last_name", models.CharField(max_length=30)),
+                ("email", models.EmailField(max_length=254, unique=True)),
             ],
         ),
     ]

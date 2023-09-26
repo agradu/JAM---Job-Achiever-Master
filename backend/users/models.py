@@ -2,13 +2,13 @@ from django.db import models
 from dependencies import models as dependencies 
 
 
-class Users(models.Model):
+class User(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     birthday = models.DateTimeField()
-    gender_id = models.ForeignKey(dependencies.Genders, on_delete=models.CASCADE) 
+    gender_id = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE) 
     email = models.EmailField(max_length = 254)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
@@ -20,30 +20,30 @@ class Users(models.Model):
     def __str__(self):
         return self.username
     
-class Educations(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+class Education(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     school = models.CharField(max_length=100)
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
     
-class Experiences(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+class Experience(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     company = models.CharField(max_length=50)
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
     
-class UserSkills(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+class UserSkill(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
     
-class UserHobbies(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+class UserHobby(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
     
-class UserLanguages(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+class UserLanguage(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)

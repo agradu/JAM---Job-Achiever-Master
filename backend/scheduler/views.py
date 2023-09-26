@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .models import Users, Company
+from .models import User, Company
 from rest_framework import viewsets
 from rest_framework import permissions
 from .serialazers import UsersSerialazer, CompanySerialazer
 
 # Create your views here.
 class UsersViewSet(viewsets.ModelViewSet):
-    queryset = Users.objects.all
+    queryset = User.objects.all
     serializer_class = UsersSerialazer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
