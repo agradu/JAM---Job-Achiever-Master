@@ -20,3 +20,6 @@ class Applications(models.Model):
     status_id = models.ForeignKey(dependencies.Statuses, on_delete=models.CASCADE)
     status_date = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self) -> str:
+        return self.position, self.company
