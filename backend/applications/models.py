@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from users import models as users
 from simulations import models as simulations
-from statuses import models as statuses
 from dependencies import models as dependencies
 # Create your models here.
 
