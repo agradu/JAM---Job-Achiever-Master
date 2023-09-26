@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .page-header {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+    <title>Job Achiever Master</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="bg-secondary">
+        <div class="bg-secondary page-header">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fa-regular fa-handshake fa-3x"></i>
+                        Job Achiever Master
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="personal-info.html"><i class="fa-solid fa-user-tie"></i> Personal
+                                info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="experience.html"><i class="fa-solid fa-ranking-star"></i> Experience</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="education.html"><i class="fa-solid fa-user-graduate"></i> Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="applications.html"><i class="fa-solid fa-envelope"></i>
+                                Applications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="simulations.html"><i class="fa-solid fa-comment"></i> Simulations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#"><i class="fa-solid fa-right-from-bracket"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- Content -->
+    <div class="container-fluid page-content">
+        <h1 class="text-center mt-4">Personal info</h1>
+        <form>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="col-2 text-right">Name</th>
+                        <td><input type="text" class="form-control" id="p_name"></td>
+                        <td rowspan="2"><img src="https://lh3.googleusercontent.com/a/ACg8ocKvmz0KCz3y8WRsixRkeKtHM7_DxabBh5V4JpyhICUiRAtL=s288-c-no" class="img-fluid"></td>
+                        <td rowspan="2">
+                            <input class="form-control" type="file" id="formFile">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Surname</th>
+                        <td><input type="text" class="form-control" id="p_surname">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Birthday</th>
+                        <td><input type="text" class="form-control" id="p_birthday">
+                        </td>
+                        <th class="col-2 text-right">Username</th>
+                        <td><input type="text" class="form-control" id="p_user"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Sex</th>
+                        <td>
+                            <select class="form-control" id="p_sex">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </td>
+                        <th class="text-right">E-mail</th>
+                        <td><input type="email" class="form-control" id="p_email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Social link</th>
+                        <td><input type="text" class="form-control" id="p_social">
+                        </td>
+                        <th class="text-right">Portfolio</th>
+                        <td><input type="text" class="form-control" id="p_github">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Phone</th>
+                        <td><input type="text" class="form-control" id="p_phone">
+                        </td>
+                        <th class="text-right">Address</th>
+                        <td><input type="text" class="form-control" id="p_address">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Caht GPT API's key</th>
+                        <td><input type="text" class="form-control" id="p_api_key"> (leave empty if you don't change)
+                        </td>
+                        <th class="text-right">Password</th>
+                        <td><input type="password" class="form-control" id="p_password"> (leave empty if you don't change)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Skills</th>
+                        <td colspan="3"><textarea class="form-control" id="p_skills" rows="2"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Languages</th>
+                        <td colspan="3"><textarea class="form-control" id="p_languages" rows="2"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right">Hobbies</th>
+                        <td colspan="3"><textarea class="form-control" id="p_hobbies" rows="2"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"  class="text-center"><button class="btn btn-primary" type="submit">Save your informations</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <!-- Footer lipit de jos -->
+    <footer class="bg-dark text-light text-center py-3 sticky-bottom">
+        &copy; 2023 Job Achiever master - All rights reserved.
+    </footer>
+
+    <!-- Script-uri Bootstrap (jQuery și Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

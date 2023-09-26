@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .page-header {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+    <title>Job Achiever Master</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="bg-secondary">
+        <div class="bg-secondary page-header">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fa-regular fa-handshake fa-3x"></i>
+                        Job Achiever Master
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="personal-info.html"><i class="fa-solid fa-user-tie"></i> Personal
+                                info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="experience.html"><i class="fa-solid fa-ranking-star"></i> Experience</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="education.html"><i class="fa-solid fa-user-graduate"></i> Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="applications.html"><i class="fa-solid fa-envelope"></i>
+                                Applications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="simulations.html"><i class="fa-solid fa-comment"></i> Simulations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#"><i class="fa-solid fa-right-from-bracket"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- Content -->
+    <div class="container-fluid page-content">
+        <h1 class="text-center mt-4">Interview</h1>
+        <form>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Position</th>
+                        <th>Company</th>
+                        <th>Reqruiter</th>
+                        <th>Atitude</th>
+                        <th>Language</th>
+                    </tr>
+                    <tr>
+                        <td>Web designer</td>
+                        <td>Streamline ltd</td>
+                        <td>John Doe</td>
+                        <td>
+                            <input type="text" class="form-control" id="i_atitude" value="neutral">
+                        </td>
+                        <td><input type="text" class="form-control" id="i_language" value="english"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-center"><button class="btn btn-primary" type="submit">Start the
+                                interview</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="bg-light border p-4 mt-4 mb-4">
+                <table class="table border-0">
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th class="text-center w-100">Good luck Adrian!</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-success text-light">John Doe</span></td>
+                            <td colspan="2">Hi, are yo ready for a job interview?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-primary text-light">Adrian Radu</span></td>
+                            <td colspan="2">No, I'm just testing it...</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="text" class="form-control" id="i_message"></td>
+                            <td><button class="btn btn-primary" type="submit">Send</button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-center"><button class="btn btn-primary" type="submit">End the interview and save it</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer lipit de jos -->
+    <footer class="bg-dark text-light text-center py-3 sticky-bottom">
+        &copy; 2023 Job Achiever master - All rights reserved.
+    </footer>
+
+    <!-- Script-uri Bootstrap (jQuery și Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
