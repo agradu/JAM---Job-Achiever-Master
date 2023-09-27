@@ -8,7 +8,7 @@ class User(models.Model):
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     birthday = models.DateTimeField()
-    gender_id = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE) 
+    gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE) 
     email = models.EmailField(max_length = 254)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
@@ -21,7 +21,7 @@ class User(models.Model):
         return self.username
     
 class Education(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     school = models.CharField(max_length=100)
     description = models.TextField()
@@ -29,7 +29,7 @@ class Education(models.Model):
     end_date = models.DateField()
     
 class Experience(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     company = models.CharField(max_length=50)
     description = models.TextField()
@@ -37,13 +37,13 @@ class Experience(models.Model):
     end_date = models.DateField()
     
 class UserSkill(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
     
 class UserHobby(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
     
 class UserLanguage(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
