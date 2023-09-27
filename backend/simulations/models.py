@@ -5,6 +5,7 @@ from dependencies import models as dependencies
 
 # Create your models here.
 
+
 class Simulation(models.Model):
     user = models.ForeignKey(users.User, on_delete=models.CASCADE)
     application = models.ForeignKey(applications.Application, on_delete=models.CASCADE)

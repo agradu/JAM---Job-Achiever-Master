@@ -2,7 +2,9 @@ from django.db import models
 from django.utils import timezone
 from users import models as users
 from dependencies import models as dependencies
+
 # Create your models here.
+
 
 class Application(models.Model):
     user = models.ForeignKey(users.User, on_delete=models.CASCADE)
@@ -15,7 +17,9 @@ class Application(models.Model):
     recruiter_name = models.CharField(max_length=255)
     recruiter_gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE)
     recruiter_position = models.CharField(max_length=255)
-    application_language = models.ForeignKey(dependencies.Language, on_delete=models.CASCADE)
+    application_language = models.ForeignKey(
+        dependencies.Language, on_delete=models.CASCADE
+    )
     status = models.ForeignKey(dependencies.Status, on_delete=models.CASCADE)
     status_date = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)

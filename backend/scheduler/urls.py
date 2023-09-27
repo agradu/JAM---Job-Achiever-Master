@@ -5,6 +5,6 @@ from . import views
 router = routers.DefaultRouter()
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('scheduler/', include('rest_framework.urls')),
+    path("", include(router.urls)),
+    path("scheduler/", include("rest_framework.urls")),
 ]

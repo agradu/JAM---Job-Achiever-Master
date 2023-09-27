@@ -15,16 +15,26 @@ layout = [
     [
         sg.Frame(
             layout=[
-                [menu, sg.vtop(sg.Column([[content_profile, content_experience]],expand_x=True, expand_y=True,))]
+                [
+                    menu,
+                    sg.vtop(
+                        sg.Column(
+                            [[content_profile, content_experience]],
+                            expand_x=True,
+                            expand_y=True,
+                        )
+                    ),
+                ]
             ],
             title="",
-            expand_x=True, expand_y=True,
+            expand_x=True,
+            expand_y=True,
         )
     ],
 ]
 
 # Create the window
-window = sg.Window("Job Achiever Master", layout, size=(600,400))
+window = sg.Window("Job Achiever Master", layout, size=(600, 400))
 
 # Events loop starting
 while True:
