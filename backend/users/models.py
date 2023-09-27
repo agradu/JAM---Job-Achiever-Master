@@ -28,6 +28,9 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     
+    def __str__(self):
+        return self.title
+    
 class Experience(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
@@ -36,14 +39,26 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     
+    def __str__(self):
+        return self.title
+    
 class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
+    
+    def __str__(self):
+        return self.description
     
 class UserHobby(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
     
+    def __str__(self):
+        return self.description
+    
 class UserLanguage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
+    
+    def __str__(self):
+        return self.description
