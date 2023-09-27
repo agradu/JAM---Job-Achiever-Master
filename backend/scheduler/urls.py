@@ -1,10 +1,10 @@
 from django.urls import path, include
 from rest_framework import routers
-from . import views
+from .views import SchedulerViewSet
 
 router = routers.DefaultRouter()
+router.register('scheduler', SchedulerViewSet, basename='scheduler')
 
 urlpatterns = [
-    path("", include(router.urls)),
-    path("scheduler/", include("rest_framework.urls")),
+    path('', include(router.urls)),
 ]
