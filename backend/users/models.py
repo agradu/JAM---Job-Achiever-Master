@@ -7,15 +7,9 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
-<<<<<<< HEAD
-    birthday = models.DateTimeField()
-    gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE) 
-    email = models.EmailField(max_length = 254)
-=======
     birthday = models.DateField()
     gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE)
     email = models.EmailField(max_length=254)
->>>>>>> 12b52f0 (Fix the bug in serializers and views)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     social_link = models.CharField(max_length=50)
