@@ -150,10 +150,17 @@ content_experience = sg.Column(
         [
             sg.Frame(
                 layout=[
-                    [sg.Text("Name of the experience goes here", justification='left')],
-                    [sg.Text("Name of the company", justification='left')],
+                    [sg.Text("Name of the experience goes here", justification="left")],
+                    [sg.Text("Name of the company", justification="left")],
                     [sg.Text("01.02.2023 - 12.12.2023")],
-                    [sg.Text(textwrap.fill("Some description goes here in this area...",70), expand_x=True)],
+                    [
+                        sg.Text(
+                            textwrap.fill(
+                                "Some description goes here in this area...", 70
+                            ),
+                            expand_x=True,
+                        )
+                    ],
                 ],
                 title="",
                 expand_x=True,
@@ -165,7 +172,14 @@ content_experience = sg.Column(
                     [sg.Text("Other name of the experience writen here")],
                     [sg.Text("Name of the company")],
                     [sg.Text("01.02.2023 - 12.12.2023")],
-                    [sg.Text(textwrap.fill("Some description goes here in this area...",70), expand_x=True)],
+                    [
+                        sg.Text(
+                            textwrap.fill(
+                                "Some description goes here in this area...", 70
+                            ),
+                            expand_x=True,
+                        )
+                    ],
                 ],
                 title="",
                 expand_x=True,
@@ -177,7 +191,14 @@ content_experience = sg.Column(
                     [sg.Text("Name of the experience")],
                     [sg.Text("Name of the company")],
                     [sg.Text("01.02.2023 - 12.12.2023")],
-                    [sg.Text(textwrap.fill("Some description goes here in this area...",70), expand_x=True)],
+                    [
+                        sg.Text(
+                            textwrap.fill(
+                                "Some description goes here in this area...", 70
+                            ),
+                            expand_x=True,
+                        )
+                    ],
                 ],
                 title="",
                 expand_x=True,
@@ -189,8 +210,13 @@ content_experience = sg.Column(
                     [sg.Text("Name of the experience")],
                     [sg.Text("Name of the company")],
                     [sg.Text("01.02.2023 - 12.12.2023")],
-                    [sg.Text(textwrap.fill(some_big_text,70), expand_x=True)],
-                    [sg.Button(button_text="Delete Experience", key="Button-Delete-Experience")],
+                    [sg.Text(textwrap.fill(some_big_text, 70), expand_x=True)],
+                    [
+                        sg.Button(
+                            button_text="Delete Experience",
+                            key="Button-Delete-Experience",
+                        )
+                    ],
                 ],
                 title="",
                 expand_x=True,
@@ -201,9 +227,18 @@ content_experience = sg.Column(
                 layout=[
                     [sg.Text("Title:"), sg.Input(key="-Exp-Title-")],
                     [sg.Text("Company:"), sg.Input(key="-Exp-Company-")],
-                    [sg.Text("Start:"), sg.Input(key="-Exp-Start-", size=(None, 10)), sg.Text("End:"), sg.Input(key="-Exp-End-", size=(None, 10))],
+                    [
+                        sg.Text("Start:"),
+                        sg.Input(key="-Exp-Start-", size=(None, 10)),
+                        sg.Text("End:"),
+                        sg.Input(key="-Exp-End-", size=(None, 10)),
+                    ],
                     [sg.Text("Description:"), sg.Input(key="-Exp-Description-")],
-                    [sg.Button(button_text="Save Experience", key="Button-Save-Experience")],
+                    [
+                        sg.Button(
+                            button_text="Save Experience", key="Button-Save-Experience"
+                        )
+                    ],
                 ],
                 title="",
                 expand_x=True,
@@ -212,8 +247,10 @@ content_experience = sg.Column(
         ],
     ],
     element_justification="right",
-    expand_x=True, expand_y=True,
+    expand_x=True,
+    expand_y=True,
     key="Content-Experience",
     visible=False,
-    scrollable=True,  vertical_scroll_only=True
+    scrollable=True,
+    vertical_scroll_only=True,
 )

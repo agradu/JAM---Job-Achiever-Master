@@ -1,5 +1,5 @@
 from django.db import models
-from dependencies import models as dependencies 
+from dependencies import models as dependencies
 
 
 class User(models.Model):
@@ -7,19 +7,26 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
+<<<<<<< HEAD
     birthday = models.DateTimeField()
     gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE) 
     email = models.EmailField(max_length = 254)
+=======
+    birthday = models.DateField()
+    gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=254)
+>>>>>>> 12b52f0 (Fix the bug in serializers and views)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     social_link = models.CharField(max_length=50)
     portfolio_link = models.CharField(max_length=50)
     api_key = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.username
-    
+
+
 class Education(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -27,7 +34,11 @@ class Education(models.Model):
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
-    
+
+    def __str__(self):
+        return self.title
+
+
 class Experience(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
@@ -35,15 +46,30 @@ class Experience(models.Model):
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
-    
+
+    def __str__(self):
+        return self.title
+
+
 class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
-    
+
+    def __str__(self):
+        return self.description
+
+
 class UserHobby(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
-    
+
+    def __str__(self):
+        return self.description
+
+
 class UserLanguage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(50)
+
+    def __str__(self):
+        return self.description
