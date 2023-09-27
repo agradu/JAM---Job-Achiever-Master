@@ -25,12 +25,8 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 class EducationViewSet(viewsets.ModelViewSet):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
-<<<<<<< HEAD
-    
-=======
 
 
->>>>>>> 12b52f0 (Fix the bug in serializers and views)
 class EducationDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
@@ -39,55 +35,32 @@ class EducationDetailView(generics.RetrieveUpdateDestroyAPIView):
 class ExperienceViewSet(viewsets.ModelViewSet):
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
-<<<<<<< HEAD
-    
-class ExperienceDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Experience.objects.all()
-    serializer_class = ExperienceSerializer
-    
-=======
 
 
 class ExperienceDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
 
->>>>>>> 12b52f0 (Fix the bug in serializers and views)
 
 class UserSkillViewSet(viewsets.ModelViewSet):
     queryset = UserSkill.objects.all()
     serializer_class = UserSkillSerializer
 
-<<<<<<< HEAD
-class UserSkillDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserSkill.objects.all()
-    serializer_class = UserSkillSerializer
-    
-    
-=======
 
 class UserSkillDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserSkill.objects.all()
     serializer_class = UserSkillSerializer
 
 
->>>>>>> 12b52f0 (Fix the bug in serializers and views)
 class UserLanguageViewSet(viewsets.ModelViewSet):
     queryset = UserLanguage.objects.all()
     serializer_class = UserLanguageSerializer
 
-<<<<<<< HEAD
-class UserLanguageDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserLanguage.objects.all()
-    serializer_class = UserLanguageSerializer
-    
-=======
 
 class UserLanguageDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserLanguage.objects.all()
     serializer_class = UserLanguageSerializer
 
->>>>>>> 12b52f0 (Fix the bug in serializers and views)
 
 class UserHobbyViewSet(viewsets.ModelViewSet):
     queryset = UserHobby.objects.all()
