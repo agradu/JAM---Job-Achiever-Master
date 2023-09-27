@@ -7,6 +7,4 @@ router.register("applications", ApplicationsViewSet, basename="applications")
 
 urlpatterns = [
     path('', include(router.urls)),
-    # Remove the line below, as it's conflicting with the router
-    # path('applications/', ApplicationsViewSet.as_view(), name="applications")
 ]
