@@ -2,7 +2,7 @@ from .models import Scheduler
 from rest_framework import serializers
 
 
-class SchedulerSerialazer(serializers.HyperlinkedModelSerializer):
+class SchedulerSerialazer(serializers.ModelSerializer):
     class Meta:
         model = Scheduler
-        fields = ["user", "application", "date"]
+        fields = "__all__"

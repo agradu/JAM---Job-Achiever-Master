@@ -16,4 +16,4 @@ class Simulation(models.Model):
     created_at = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.application_id.position} - {self.application_id.company} ({self.created_at})"
+        return f"{self.application.position} - {self.application.company} ({self.created_at})"
