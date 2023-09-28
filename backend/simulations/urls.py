@@ -3,7 +3,7 @@ from rest_framework import routers
 from .views import SimulationViewSet
 
 router = routers.DefaultRouter()
-router.register('simulations', SimulationViewSet, basename='simulations')
+router.register('item', SimulationViewSet, basename='simulations')
 
 urlpatterns = [
     path('', include(router.urls)),
