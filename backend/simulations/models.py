@@ -10,7 +10,7 @@ class Simulation(models.Model):
     user = models.ForeignKey(users.User, on_delete=models.CASCADE)
     application = models.ForeignKey(applications.Application, on_delete=models.CASCADE)
     recruiter_attitude = models.CharField(max_length=150, null=True, blank=True)
-    language = models.ForeignKey(dependencies.Language, on_delete=models.CASCADE)
+    language = models.ForeignKey(dependencies.Language, on_delete=models.SET_DEFAULT, default=1)
     json_file = models.TextField(null=True, blank=True)
     review = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

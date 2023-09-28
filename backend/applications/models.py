@@ -15,12 +15,10 @@ class Application(models.Model):
     company_adress = models.CharField(max_length=255)
     source = models.CharField(max_length=255)
     recruiter_name = models.CharField(max_length=255)
-    recruiter_gender = models.ForeignKey(dependencies.Gender, on_delete=models.CASCADE)
+    recruiter_gender = models.ForeignKey(dependencies.Gender, on_delete=models.SET_DEFAULT, default=1)
     recruiter_position = models.CharField(max_length=255)
-    application_language = models.ForeignKey(
-        dependencies.Language, on_delete=models.CASCADE
-    )
-    status = models.ForeignKey(dependencies.Status, on_delete=models.CASCADE)
+    application_language = models.ForeignKey(dependencies.Language, on_delete=models.SET_DEFAULT, default=1)
+    status = models.ForeignKey(dependencies.Status, on_delete=models.SET_DEFAULT, default=1)
     status_date = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

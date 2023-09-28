@@ -4,17 +4,17 @@ from django.db import models
 
 
 class Language(models.Model):
-    language = models.CharField(max_length=100)
+    language = models.CharField(max_length=100, default="English")
     def __str__(self):
         return self.language 
 
 class Gender(models.Model):
-    gender = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50, default="Male")
     def __str__(self):
         return self.gender 
 
 
 class Status(models.Model):
-    status = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, default="Saved")
     def __str__(self):
         return self.status 
