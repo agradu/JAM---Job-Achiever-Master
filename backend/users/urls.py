@@ -10,12 +10,12 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register("item", UserViewSet, basename="users")
-router.register("item", EducationViewSet, basename="education")
-router.register("item", ExperienceViewSet, basename="experience")
-router.register("item", UserSkillViewSet, basename="userskills")
-router.register("item", UserLanguageViewSet, basename="userlanguage")
-router.register("item", UserHobbyViewSet, basename="userhobby")
+router.register("user", UserViewSet, basename="users")
+router.register("education", EducationViewSet, basename="education")
+router.register("experience", ExperienceViewSet, basename="experience")
+router.register("skill", UserSkillViewSet, basename="userskills")
+router.register("language", UserLanguageViewSet, basename="userlanguage")
+router.register("hobby", UserHobbyViewSet, basename="userhobby")
 
 urlpatterns = [
     path("", include(router.urls)),

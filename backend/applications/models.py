@@ -19,7 +19,7 @@ class Application(models.Model):
     recruiter_position = models.CharField(max_length=255)
     application_language = models.ForeignKey(dependencies.Language, on_delete=models.SET_DEFAULT, default=1)
     status = models.ForeignKey(dependencies.Status, on_delete=models.SET_DEFAULT, default=1)
-    status_date = models.DateTimeField(blank=True, null=True)
+    status_date = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
