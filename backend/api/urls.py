@@ -26,4 +26,5 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("dependencies/", include("dependencies.urls")),
     path("simulations/", include("simulations.urls")),
+    path("letter_generator/", include("generator_letter.urls")),
 ]
