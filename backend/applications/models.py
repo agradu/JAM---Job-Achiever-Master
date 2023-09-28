@@ -22,7 +22,7 @@ class Application(models.Model):
     )
     status = models.ForeignKey(dependencies.Status, on_delete=models.CASCADE)
     status_date = models.DateTimeField(blank=True, null=True)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"{self.position} - {self.company} ({self.created_at})"

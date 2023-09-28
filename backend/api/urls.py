@@ -23,5 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("scheduler/", include("scheduler.urls")),
     path("applications/", include("applications.urls")),
-    path("user/", include("users.urls")),
+    path("users/", include("users.urls")),
+    path("dependencies/", include("dependencies.urls")),
+    path("simulations/", include("simulations.urls")),
 ]
