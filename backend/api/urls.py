@@ -21,9 +21,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/rest-auth/", include("dj_rest_auth.urls")),
+    path("api/rest-auth/registration", include("dj_rest_auth.registration.urls")),
     path("scheduler/", include("scheduler.urls")),
     path("applications/", include("applications.urls")),
-    path("users/", include("users.urls")),
+    path("profiles/", include("profiles.urls")),
     path("dependencies/", include("dependencies.urls")),
     path("simulations/", include("simulations.urls")),
     path("letter_generator/", include("generator_letter.urls")),

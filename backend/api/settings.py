@@ -41,20 +41,43 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "applications",
+    "dependencies",
+    "generator_cv",
+    "generator_letter",
+    "scheduler",
+    "simulations",
+    "profiles",
     "django_extensions",
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
-    "users",
-    "applications",
-    "scheduler",
-    "dependencies",
-    "simulations",
+    "allauth",
+    "allauth.account",
+    "dj_rest_auth.registration",
+    "drf_spectacular",
 ]
+
 
 # Add these two lines to send email (for example to recover a forgotten password)
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+SITE_ID = 1
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly"
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
+}
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -140,3 +163,4 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
