@@ -1,11 +1,11 @@
 from django.db import models
 from applications import models as applications
-from users import models as users
+from profiles.models import Profile
 # Create your models here.
 
 
 class Scheduler(models.Model):
-    user = models.ForeignKey(users.User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     application = models.ForeignKey(applications.Application, on_delete=models.CASCADE)
     interview_shedule = models.DateTimeField()
     interview_time_before = models.TimeField()

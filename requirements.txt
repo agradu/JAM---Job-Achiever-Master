@@ -32,3 +32,6 @@ tqdm==4.66.1
 typing_extensions==4.8.0
 urllib3==2.0.5
 yarl==1.9.2
+django-allauth==0.54.0
+drf-spectacular==0.26.4
+

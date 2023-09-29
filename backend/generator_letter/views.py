@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import User, Education, Experience, UserSkill, UserLanguage, UserHobby
+from profiles.models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
 from applications.models import Application
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -15,8 +15,8 @@ from rest_framework.response import Response
 def update_application(request, pk):
     try:
         application = Application.objects.get(pk=pk) 
-    #    user = User.objects.get(pk=pk)
-    except User.DoesNotExist:
+    #    user = Profile.objects.get(pk=pk)
+    except Profile.DoesNotExist:
         return Response(status=404)
     application.description = "Test done!"
     application.save()

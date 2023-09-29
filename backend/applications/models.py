@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils import timezone
-from users import models as users
+from profiles.models import Profile
 from dependencies import models as dependencies
 
 # Create your models here.
 
 
 class Application(models.Model):
-    user = models.ForeignKey(users.User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
     description = models.TextField()
