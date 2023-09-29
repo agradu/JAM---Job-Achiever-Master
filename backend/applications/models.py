@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from profiles.models import Profile
 from dependencies import models as dependencies
 
