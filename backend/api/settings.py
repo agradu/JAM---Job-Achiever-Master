@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     "simulations",
 ]
 
+# Add these two lines to send email (for example to recover a forgotten password)
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -82,8 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "api.wsgi.application"
 
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -92,7 +94,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "jam",
         "USER": "postgres",
-        "PASSWORD": DB_PASSWORD,
+        "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
@@ -120,9 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en-GB"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Berlin"
 
 USE_I18N = True
 
