@@ -60,9 +60,8 @@ INSTALLED_APPS = [
 
 
 # Add these two lines to send email (for example to recover a forgotten password)
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SITE_ID = 1
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
