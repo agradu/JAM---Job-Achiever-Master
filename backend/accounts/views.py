@@ -52,6 +52,11 @@ class UserLogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        logout(request)
-        return Response({'message': 'Logout succesfuly!'}, status=204)
+        user = request.user
+        if user.is_authenticated:
+            user.auth_token.delete() 
+            logout(request)
+            return Response({'message': 'Logout succesfuly!'}, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({'message': 'User is not authenticated.'}, status=status.HTTP_401_UNAUTHORIZED)
 
