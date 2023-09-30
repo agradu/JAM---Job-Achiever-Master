@@ -5,9 +5,7 @@ from .models import Profile, Education, Experience, ProfileSkill, ProfileLanguag
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = [
-            "username", "first_name", "last_name", "email", "picture", "birthday", "gender", "phone", "address", "social_link", "portfolio_link", "api_key"
-        ]
+        fields = "__all__"
 
 
 class EducationSerializer(serializers.ModelSerializer):

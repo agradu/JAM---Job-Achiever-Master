@@ -1,12 +1,12 @@
 from django.db import models
-from profiles.models import Profile
+from django.contrib.auth.models import User
 from dependencies import models as dependencies
 
 # Create your models here.
 
 
 class Application(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
     description = models.TextField()

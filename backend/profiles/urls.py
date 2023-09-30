@@ -10,7 +10,7 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register("user", ProfileViewSet, basename="profile")
+router.register("profile", ProfileViewSet, basename="profile")
 router.register("education", EducationViewSet, basename="education")
 router.register("experience", ExperienceViewSet, basename="experience")
 router.register("skill", ProfileSkillViewSet, basename="profileskills")

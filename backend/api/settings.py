@@ -35,27 +35,28 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django defaults
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # rest framework dependend apps
+    "rest_framework",
+    "rest_framework.authtoken",
+    # extra needed apps
+    "django_extensions",
+    "drf_spectacular",
+    # user created apps
+    "accounts",
     "applications",
     "dependencies",
     "generator_cv",
     "generator_letter",
+    "profiles",
     "scheduler",
     "simulations",
-    "profiles",
-    "django_extensions",
-    "rest_framework",
-    "rest_framework.authtoken",
-    "dj_rest_auth",
-    "allauth",
-    "allauth.account",
-    "dj_rest_auth.registration",
-    "drf_spectacular",
 ]
 
 
@@ -65,7 +66,7 @@ SITE_ID = 1
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticatedOrReadOnly"
+        "rest_framework.permissions.IsAuthenticated"
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -74,7 +75,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 100,
+    'PAGE_SIZE': 10,
 }
 
 

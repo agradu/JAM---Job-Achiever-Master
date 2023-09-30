@@ -1,8 +1,7 @@
-from django.shortcuts import render
-from .models import Scheduler
 from rest_framework import viewsets
 from rest_framework import permissions
 from .serialazers import SchedulerSerialazer
+from .models import Scheduler
 
 # Create your views here.
 
