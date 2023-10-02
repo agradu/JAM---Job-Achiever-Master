@@ -9,4 +9,4 @@ from .models import Scheduler
 class SchedulerViewSet(viewsets.ModelViewSet):
     queryset = Scheduler.objects.all()
     serializer_class = SchedulerSerialazer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
