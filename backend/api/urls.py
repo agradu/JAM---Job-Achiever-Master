@@ -26,4 +26,5 @@ urlpatterns = [
     path("api/v1/profiles/", include("profiles.urls")),
     path("api/v1/scheduler/", include("scheduler.urls")),
     path("api/v1/simulations/", include("simulations.urls")),
+    path("api/v1/email_sender/", include("email_sender.urls"))
 ]
