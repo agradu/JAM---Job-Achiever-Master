@@ -1,0 +1,15 @@
+GET http://127.0.0.1:8000/api/v1/applications/item/
+Authorization: Token c27f8befcb2901eb4bbe3ea7d909ffeab1daf04d
+Content-Type: application/json
+
+{
+    "user": 1,
+    "position": "Some position",
+    "company": "Name of company",
+    "description": "My description long long loooong...",
+    "company_email": "email@email.ro",
+    "company_adress": "Company adress here",
+    "source": "Facebook",
+    "recruiter_name": "John Doe",
+    "recruiter_position": "CEO"
+}
