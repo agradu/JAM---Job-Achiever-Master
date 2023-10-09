@@ -3,8 +3,6 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import Sendmail
 
-router = DefaultRouter()
-router.register("mail", Sendmail, basename="mail")
 urlpatterns = [
-    path("", include(router.urls)),
+    path("mail/", Sendmail.as_view(), name="sendmail")
 ]
