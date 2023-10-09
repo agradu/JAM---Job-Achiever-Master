@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import *
+from rest_framework.routers import DefaultRouter
+from .views import Sendmail
 
+router = DefaultRouter()
+router.register("mail", Sendmail, basename="mail")
 urlpatterns = [
-    path("mail", Sendmail.as_view())
+    path("", include(router.urls)),
 ]
