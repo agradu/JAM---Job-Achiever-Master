@@ -1,8 +1,7 @@
 from django.urls import path, include
-from .views import update_application
-from rest_framework.routers import DefaultRouter
+from .views import UpdateCoverLetter
 
 
 urlpatterns = [
-    path("<int:pk>/", update_application),
+    path("<int:pk>/", UpdateCoverLetter.as_view(), name="Update Cover Letter"),
 ]

@@ -18,7 +18,7 @@ class Profile(models.Model):
         return f"{self.user.first_name} {self.user.last_name} ({self.user.username})"
 
 class Education(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=True)
     school = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
@@ -30,7 +30,7 @@ class Education(models.Model):
 
 
 class Experience(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, null=True)
     company = models.CharField(max_length=50, null=True)
     description = models.TextField(null=True)
@@ -42,7 +42,7 @@ class Experience(models.Model):
 
 
 class ProfileSkill(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     description = models.CharField(max_length=50, null=True)
 
     def __str__(self):
@@ -50,7 +50,7 @@ class ProfileSkill(models.Model):
 
 
 class ProfileHobby(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     description = models.CharField(max_length=50, null=True)
 
     def __str__(self):
@@ -58,7 +58,7 @@ class ProfileHobby(models.Model):
 
 
 class ProfileLanguage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     description = models.CharField(max_length=50, null=True)
 
     def __str__(self):
