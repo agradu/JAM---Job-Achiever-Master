@@ -18,8 +18,8 @@ class Sendmail(APIView):
                     to=[application.company_email],
             )
             email.send(fail_silently=False)
+            return Response({'status':True, 'message':'Email sent successfully'})
         except:
-            print("Something has gone wrong...")        
-        # emailw.attach_file('manage.py')
+            return Response(status=404)
         
-        return Response({'status':True, 'message':'Email sent successfully'})
+        
