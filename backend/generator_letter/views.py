@@ -2,7 +2,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from profiles.models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
 from applications.models import Application
-from .serializers import CVSerializer
 from dependencies import gpt_functions as gpt
 
 # Create your views here.
