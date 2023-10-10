@@ -9,15 +9,17 @@ from applications.models import Application
 class Sendmail(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
-        # breakpoint()
-        with mail.get_connection() as connection:
-            mail.EmailMessage(
-                subject='test email Subject',
-                body='Test email body, this msg comes from Django',
-                from_email=settings.EMAIL_HOST_USER,
-                to=[settings.EMAIL_HOST_USER],
-        ).send()
-        
+        try:
+            application = Application.objects.get(pk=request.data['pk'])            
+            email = mail.EmailMessage(
+                    subject=application.position,
+                    body=application.cover_letter_text,
+                    from_email=settings.EMAIL_HOST_USER,
+                    to=[application.company_email],
+            )
+            email.send(fail_silently=False)
+        except:
+            print("Something has gone wrong...")        
         # emailw.attach_file('manage.py')
         
         return Response({'status':True, 'message':'Email sent successfully'})

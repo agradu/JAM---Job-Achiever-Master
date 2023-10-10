@@ -3,5 +3,5 @@ Authorization: Token e396ba62f67f36caeb7369ba86940b6c8482bfef
 Content-Type: application/json
 
 {
-    "to":"jude.smiley.python@gmail.com"
+    "pk": 1
 }
