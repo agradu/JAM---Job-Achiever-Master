@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/v1/accounts/', include("accounts.urls")),
     path("api/v1/applications/", include("applications.urls")),
     path("api/v1/dependencies/", include("dependencies.urls")),
+    path("api/v1/cv_generator/", include("generator_cv.urls")),
     path("api/v1/letter_generator/", include("generator_letter.urls")),
     path("api/v1/profiles/", include("profiles.urls")),
     path("api/v1/scheduler/", include("scheduler.urls")),

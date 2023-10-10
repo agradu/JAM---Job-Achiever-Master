@@ -12,7 +12,7 @@ class Application(models.Model):
     company = models.CharField(max_length=255)
     description = models.TextField()
     cover_letter_text = models.TextField(blank=True)
-    cv_short_description = models.CharField(max_length=255, blank=True)
+    cv_short_description = models.CharField(max_length=400, blank=True)
     company_email = models.EmailField(max_length=255)
     company_adress = models.CharField(max_length=255, blank=True)
     source = models.CharField(max_length=255, blank=True)
