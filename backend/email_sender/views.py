@@ -1,25 +1,23 @@
-from django.shortcuts import render
 from django.conf import settings
 from rest_framework import permissions
 from rest_framework.views import APIView
-from django.core.mail import EmailMessage
+from django.core import mail
 from rest_framework.response import Response
-import smtplib
+from applications.models import Application
 
 # Create your views here.
 class Sendmail(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
         # breakpoint()
-        emailw=EmailMessage(
-            subject='test email Subject',
-            body='test email body, this msg is from python',
-            from_email=settings.EMAIL_HOST_USER,
-            to=[settings.EMAIL_HOST_USER],
-        )
+        with mail.get_connection() as connection:
+            mail.EmailMessage(
+                subject='test email Subject',
+                body='Test email body, this msg comes from Django',
+                from_email=settings.EMAIL_HOST_USER,
+                to=[settings.EMAIL_HOST_USER],
+        ).send()
         
         # emailw.attach_file('manage.py')
         
-        emailw.send(fail_silently=False)
         return Response({'status':True, 'message':'Email sent successfully'})
-        
