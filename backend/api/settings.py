@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
 
 # Add these two lines to send email (for example to recover a forgotten password)
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SITE_ID = 1
 
 
