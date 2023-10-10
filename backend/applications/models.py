@@ -1,21 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
+from profiles.models import Profile
 from dependencies import models as dependencies
 
 # Create your models here.
 
 
 class Application(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
     description = models.TextField()
+    cover_letter_text = models.TextField(blank=True)
+    cv_short_description = models.CharField(max_length=255, blank=True)
     company_email = models.EmailField(max_length=255)
-    company_adress = models.CharField(max_length=255)
-    source = models.CharField(max_length=255)
-    recruiter_name = models.CharField(max_length=255)
+    company_adress = models.CharField(max_length=255, blank=True)
+    source = models.CharField(max_length=255, blank=True)
+    recruiter_name = models.CharField(max_length=255, default="John Doe")
     recruiter_gender = models.ForeignKey(dependencies.Gender, on_delete=models.SET_DEFAULT, default=1)
-    recruiter_position = models.CharField(max_length=255)
+    recruiter_position = models.CharField(max_length=255, default="CEO")
     application_language = models.ForeignKey(dependencies.Language, on_delete=models.SET_DEFAULT, default=1)
     status = models.ForeignKey(dependencies.Status, on_delete=models.SET_DEFAULT, default=1)
     status_date = models.DateTimeField(auto_now_add=True)
