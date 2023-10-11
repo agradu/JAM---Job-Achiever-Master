@@ -61,11 +61,14 @@ INSTALLED_APPS = [
 ]
 
 
+# Add these two lines to send email (for example to recover a forgotten password)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SITE_ID = 1
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+
+
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_USE_TLS=True
 EMAIL_PORT = 587
-EMAIL_USE_TLS= True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
@@ -81,7 +84,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    # 'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
 }
 
 AUTHENTICATION_BACKENDS = [
