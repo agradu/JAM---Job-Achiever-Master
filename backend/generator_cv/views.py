@@ -4,8 +4,42 @@ from profiles.models import Profile, Education, Experience, ProfileSkill, Profil
 from applications.models import Application
 from .serializers import CVSerializer
 from dependencies import gpt_functions as gpt
-
+from django.shortcuts import render
+from datetime import date
 # Create your views here.
+
+def generate_pdf(request, pk):
+    template = "generator_cv/cv.html"
+    application = Application.objects.get(pk=pk)
+    profile = application.profile
+    user = profile.user
+    education_list = Education.objects.filter(profile=profile)
+    experience_list = Experience.objects.filter(profile=profile)
+    skill_list = ProfileSkill.objects.filter(profile=profile)
+    language_list = ProfileLanguage.objects.filter(profile=profile)
+    hobby_list = ProfileHobby.objects.filter(profile=profile)
+    today = date.today()
+
+    context = {
+        "picture": profile.picture,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
+        "birthday": profile.birthday,
+        "address": profile.address,
+        "phone": profile.phone,
+        "email": user.email,
+        "portfolio": profile.portfolio_link,
+        "facebook": profile.social_link,
+        "educations": education_list,
+        "experiences": experience_list,
+        "skills": skill_list,
+        "hobbies": hobby_list,
+        "languages": language_list,
+        "description": application.cv_short_description,
+        "date": today.strftime('%d.%m.%Y')
+    }
+
+    return render(request, template, context)
 
 class UpdateCvDescription(APIView):
     def get(self, request, pk):

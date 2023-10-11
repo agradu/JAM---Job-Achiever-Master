@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>CV</title>
+	<style>
+		.page-content {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+	</style>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+	<div class="container-fluid page-content">
+		<table class="table table-borderless">
+			<tbody>
+				<tr>
+					<td rowspan="2">
+						{% load static %}
+						<img src="{% static picture %}" class="img-fluid rounded-circle">
+						</img>
+					</td>
+					<td>
+						<h2>{{ first_name }}</h2>
+						<h1>{{ last_name }}</h1>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>{{ birthday }}</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h3>Details</h3>
+						<p><i class="fa-solid fa-location-dot"></i> <b>Adress</b><br>{{ address }}</p>
+						<p><i class="fa-solid fa-phone"></i> <b>Phone</b><br>{{ phone }}</p>
+						<p><i class="fa-solid fa-envelope"></i> <b>Email</b><br>{{ email }}</p>
+						<p><i class="fa-regular fa-folder-open"></i> <b>Portfolio</b><br>{{ portfolio }}</p>
+						<p><i class="fa-brands fa-facebook"></i> <b>Facebook</b><br>{{ facebook }}</p>
+						<h3 class="pt-3">Skills</h3>
+						<p>
+							{% for skill in skills %}
+							<i class="fa-solid fa-code-commit"></i> {{ skill }}<br>
+							{% endfor %}</p>
+						<h3 class="pt-3">Hobbies</h3>
+						<p>{% for hobby in hobbies %}
+							<i class="fa-solid fa-code-commit"></i> {{ hobby }}<br>
+							{% endfor %}
+						</p>
+						<h3 class="pt-3">Languages</h3>
+						<p>
+							{% for language in hobbies %}
+							<i class="fa-solid fa-code-commit"></i> Language nr 1<br>
+							{% endfor %}</p>
+					</td>
+					<td>
+						<h3>Profile</h3>
+						<p>{{ description }}</p>
+						<h3 class="pt-3 pb-1">Employment History</h3>
+						{% for i in experiences %}
+						<p><b>{{ i.title }}</b> - from {{ i.start_date|date:"d.m.Y" }} to {{ i.end_date|date:"d.m.Y" }}<br><b>{{ i.company }}</b></p>
+						<p>{{ i.description|linebreaks }}</p>
+						{% endfor %}
+						<h3 class="pt-3 pb-1">Education</h3>
+						{% for i in educations %}
+						<p><b>{{ i.title }}</b> - from {{ i.start_date|date:"d.m.Y" }} to {{ i.end_date|date:"d.m.Y" }}<br><b>{{ i.school }}</b></p>
+						<p>{{ i.description|linebreaks }}</p>
+						{% endfor %}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="text-center">
+						{{ date }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- Script-uri Bootstrap (jQuery și Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
