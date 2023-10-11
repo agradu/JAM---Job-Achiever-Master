@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from profiles.models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
 from applications.models import Application
 from dependencies import gpt_functions as gpt
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from datetime import date
+import pdfkit
+from django.template.loader import render_to_string
 # Create your views here.
 
 def generate_pdf(request, pk):
@@ -38,7 +40,19 @@ def generate_pdf(request, pk):
         "date": today.strftime('%d.%m.%Y')
     }
 
-    return render(request, template, context)
+    options = {
+        'page-size': 'A4',
+        'margin-top': '20mm',
+        'margin-right': '20mm',
+        'margin-bottom': '20mm',
+        'margin-left': '20mm',
+    }
+    output_file_name = f'cv_{user.last_name}.pdf'
+    html_content =  render_to_string(template, context)
+    pdf = pdfkit.from_string(html_content, False, options=options)
+    response = HttpResponse(pdf, content_type = "application/pdf")
+    response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
+    return response
 
 class UpdateCvDescription(APIView):
     def get(self, request, pk):
