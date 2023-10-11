@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to="profile_pictures/", null=True, blank=True)
+    picture = models.ImageField(upload_to="saved_files/profile_pictures/", null=True, blank=True)
     birthday = models.DateField(default=timezone.now)
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, null=True, blank=True)
