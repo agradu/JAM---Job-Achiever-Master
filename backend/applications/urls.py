@@ -1,8 +1,8 @@
 from django.urls import path, include
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 from .views import ApplicationsViewSet
 
-router = routers.DefaultRouter()
+router = DefaultRouter()
 router.register("item", ApplicationsViewSet, basename="applications")
 
 urlpatterns = [

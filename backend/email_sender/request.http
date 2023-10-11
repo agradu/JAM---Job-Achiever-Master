@@ -1,7 +1,7 @@
 POST http://127.0.0.1:8000/api/v1/email_sender/mail/
-Authorization: Token e396ba62f67f36caeb7369ba86940b6c8482bfef
+Authorization: Token ebaa7cab58993033db0f3c18271988ceed6abf37
 Content-Type: application/json
 
 {
-    "to":"jude.smiley.python@gmail.com"
+    "pk": 1
 }

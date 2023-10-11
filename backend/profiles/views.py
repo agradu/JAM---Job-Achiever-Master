@@ -1,5 +1,4 @@
-from rest_framework import viewsets
-from rest_framework import permissions
+from rest_framework import viewsets, permissions, status
 from .serializers import (
     ProfileSerializer,
     EducationSerializer,
@@ -9,6 +8,7 @@ from .serializers import (
     ProfileHobbySerializer,
 )
 from .models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
+from rest_framework.response import Response
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
