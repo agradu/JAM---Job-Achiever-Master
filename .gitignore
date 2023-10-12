@@ -4,4 +4,5 @@ venv
 __pycache__
 *.pyc
 *.sqlite3
-request.http
+request.h
+saved_files/profile_pictures/*
