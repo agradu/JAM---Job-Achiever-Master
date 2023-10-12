@@ -96,29 +96,25 @@ You must create a strong CV opening statement in {application.application_langua
 You will create only the statement.
 The statement must have less than 255 characters and must not contain your name."""
             
-            gpt.openai.api_key = profile.api_key
-
             messages = [
                 gpt.bot_message("system", formated_info),
                 gpt.bot_message("user", role_description),
             ]
             
             try:
-                if profile.api_key != "":
+                if profile.api_key not in ["", None]:
+                    gpt.openai.api_key = profile.api_key
                     response = gpt.bot_request(messages)
                 else:
-                    response = """As a harmonious fusion of artistic insight and technical prowess,
-                    I embody the essence of a Full Stack Developer. Drawing from my creative palette,
-                    I paint intricate app solutions using Python as my brush and Django as my canvas trying to bring websites to life in a symphonies of HTML, CSS, PHP, and MySQL.
-                    Embracing the artistry within technology, I aspire to craft digital masterpieces that leave a lasting impression."""
-                    application.cv_short_description = response
-                    application.save()
-                    return Response({"response": response})
-            except Exception as e:
+                    response = """As a harmonious fusion of artistic insight and technical prowess, I embody the essence of a Full Stack Developer. 
+Embracing the artistry within technology, I aspire to craft long lasting digital masterpieces."""
+                application.cv_short_description = response
+            except:
                 application.cv_short_description = "Error processing request."
-                application.save()
                 return Response({"error": "Error processing request."}, status=500)
-        
+            application.cv_short_description = response
+            application.save()
+            return Response({"message": response})
         except Profile.DoesNotExist:
-            return Response(status=404)
+            return Response({"error": "Profile does not exist."}, status=404)
         
