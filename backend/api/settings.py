@@ -170,7 +170,7 @@ USE_TZ = True
 
 STATIC_URL = "saved_files/"
 STATICFILES_DIRS = [
-    BASE_DIR / "saved_files",
+    os.path.join(BASE_DIR, 'saved_files')
 ]
 
 # Default primary key field type
