@@ -37,3 +37,4 @@ echo -n "Enter the email for superuser: "
 read DJANGO_EMAIL
 
 python manage.py createsuperuser --username="$DJANGO_USER" --email="$DJANGO_EMAIL"
+python manage.py runscript data_load
