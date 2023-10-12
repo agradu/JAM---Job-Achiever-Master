@@ -15,9 +15,9 @@ echo -n ""
 DATABASE_TO_DELETE="jam"
 DATABASE_TO_CREATE="jam"
 # Erase the database if it exist
-sudo -S -u postgres dropdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_DELETE"
+sudo -i -u postgres dropdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_DELETE"
 # Create the new data base
-sudo -S -u postgres createdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_CREATE"
+sudo -i -u postgres createdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_CREATE"
 # Verify if the operation is succeed
 if [ $? -ne 0 ]; then
     echo "Faild to reset the database!"
