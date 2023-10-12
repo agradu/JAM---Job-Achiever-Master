@@ -25,7 +25,7 @@ urlpatterns = [
     path("api/v1/cv_generator/", include("generator_cv.urls")),
     path("api/v1/letter_generator/", include("generator_letter.urls")),
     path("api/v1/profiles/", include("profiles.urls")),
-    path("api/v1/scheduler/", include("scheduler.urls")),
+    path("api/v1/schedulers/", include("schedulers.urls")),
     path("api/v1/simulations/", include("simulations.urls")),
     path("api/v1/email_sender/", include("email_sender.urls"))
 ]

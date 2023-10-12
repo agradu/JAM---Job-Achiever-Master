@@ -16,7 +16,7 @@ class Application(models.Model):
     cv_short_description = models.CharField(max_length=400, blank=True)
     cv_file = models.FileField(upload_to="saved_files/cvs/",blank=True)
     company_email = models.EmailField(max_length=255)
-    company_adress = models.CharField(max_length=255, blank=True)
+    company_address = models.CharField(max_length=255, blank=True)
     source = models.CharField(max_length=255, blank=True)
     recruiter_name = models.CharField(max_length=255, default="John Doe")
     recruiter_gender = models.ForeignKey(dependencies.Gender, on_delete=models.SET_DEFAULT, default=1)

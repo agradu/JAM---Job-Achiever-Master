@@ -58,10 +58,13 @@ You don't ask questions or say anything other than the content of the cover lett
             ]
             
             try:
-                response = gpt.bot_request(messages)
-                application.cover_letter_text = response
-                application.save()
-                return Response({"response": response})
+                if profile.api_key != "":
+                    response = gpt.bot_request(messages)
+                else:
+                    response = gpt.bot_request(messages)
+                    application.cover_letter_text = response
+                    application.save()
+                    return Response({"response": response})
             except Exception as e:
                 application.cover_letter_text = "Error processing request."
                 application.save()

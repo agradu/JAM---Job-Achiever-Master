@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     "generator_cv",
     "generator_letter",
     "profiles",
-    "scheduler",
+    "schedulers",
     "simulations",
     "email_sender",
 ]

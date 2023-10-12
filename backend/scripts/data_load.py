@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from dependencies.models import *
 from profiles.models import *
 from applications.models import Application
-from scheduler.models import Scheduler
+from schedulers.models import Scheduler
 from datetime import datetime
 
 

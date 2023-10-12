@@ -9,15 +9,15 @@ PGUSER="postgres"
 PGHOST="localhost"
 PGPORT="5432"
 # Reading the password from user
-echo -n "Enter the PostgreSQL password twice."
+echo -n "Enter the PostgreSQL password."
 echo -n ""
-# read -s PGPASSWORD  # "-s" to hide the password when typing
+
 DATABASE_TO_DELETE="jam"
 DATABASE_TO_CREATE="jam"
 # Erase the database if it exist
-echo "$PGPASSWORD" | sudo -S -u postgres dropdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_DELETE"
+sudo -S -u postgres dropdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_DELETE"
 # Create the new data base
-echo "$PGPASSWORD" | sudo -S -u postgres createdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_CREATE"
+sudo -S -u postgres createdb --username="$PGUSER" --host="$PGHOST" --port="$PGPORT" "$DATABASE_TO_CREATE"
 # Verify if the operation is succeed
 if [ $? -ne 0 ]; then
     echo "Faild to reset the database!"
