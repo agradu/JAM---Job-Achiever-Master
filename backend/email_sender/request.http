@@ -1,5 +1,5 @@
 POST http://127.0.0.1:8000/api/v1/email_sender/mail/
-Authorization: Token ebaa7cab58993033db0f3c18271988ceed6abf37
+Authorization: Token 873ea42fc3d30dbe2da8980dea923296442700ed
 Content-Type: application/json
 
 {
