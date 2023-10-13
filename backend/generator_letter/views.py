@@ -83,6 +83,6 @@ John Doe"""
                 return Response({"error": f"Error processing request."}, status=500)
             application.save()
             return Response({"response": response})
-        except Profile.DoesNotExist:
+        except Application.DoesNotExist:
             return Response({"error": "Profile does not exist."}, status=404)
         

@@ -115,6 +115,6 @@ Embracing the artistry within technology, I aspire to craft long lasting digital
             application.cv_short_description = response
             application.save()
             return Response({"message": response})
-        except Profile.DoesNotExist:
+        except:
             return Response({"error": "Profile does not exist."}, status=404)
         
