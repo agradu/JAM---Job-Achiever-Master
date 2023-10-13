@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "drf_spectacular",
     "allauth",
+    'allauth.account',
+    'allauth.socialaccount',
     # user created apps
     "accounts",
     "applications",
