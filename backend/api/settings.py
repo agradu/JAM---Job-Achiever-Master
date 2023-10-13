@@ -96,6 +96,10 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": "JAM - Job Achiever Master",
+}
+
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
