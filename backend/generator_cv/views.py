@@ -1,13 +1,22 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from profiles.models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
+from profiles.models import (
+    Profile,
+    Education,
+    Experience,
+    ProfileSkill,
+    ProfileLanguage,
+    ProfileHobby,
+)
 from applications.models import Application
 from dependencies import gpt_functions as gpt
 from django.shortcuts import render, HttpResponse
 from datetime import date
 import pdfkit
 from django.template.loader import render_to_string
+
 # Create your views here.
+
 
 def generate_pdf(request, pk):
     template = "generator_cv/cv.html"
@@ -37,22 +46,23 @@ def generate_pdf(request, pk):
         "hobbies": hobby_list,
         "languages": language_list,
         "description": application.cv_short_description,
-        "date": today.strftime('%d.%m.%Y')
+        "date": today.strftime("%d.%m.%Y"),
     }
 
     options = {
-        'page-size': 'A4',
-        'margin-top': '20mm',
-        'margin-right': '20mm',
-        'margin-bottom': '20mm',
-        'margin-left': '20mm',
+        "page-size": "A4",
+        "margin-top": "20mm",
+        "margin-right": "20mm",
+        "margin-bottom": "20mm",
+        "margin-left": "20mm",
     }
-    output_file_name = f'cv_{user.last_name}.pdf'
-    html_content =  render_to_string(template, context)
+    output_file_name = f"cv_{user.last_name}.pdf"
+    html_content = render_to_string(template, context)
     pdf = pdfkit.from_string(html_content, False, options=options)
-    response = HttpResponse(pdf, content_type = "application/pdf")
-    response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
+    response = HttpResponse(pdf, content_type="application/pdf")
+    response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
     return response
+
 
 class UpdateCvDescription(APIView):
     def get(self, request, pk):
@@ -95,12 +105,12 @@ class UpdateCvDescription(APIView):
 You must create a strong CV opening statement in {application.application_language} that highlights the sum of your strengths, experience and motivation to impress employer of that job.
 You will create only the statement.
 The statement must have less than 255 characters and must not contain your name."""
-            
+
             messages = [
                 gpt.bot_message("system", formated_info),
                 gpt.bot_message("user", role_description),
             ]
-            
+
             try:
                 if profile.api_key not in ["", None]:
                     gpt.openai.api_key = profile.api_key
@@ -115,6 +125,5 @@ Embracing the artistry within technology, I aspire to craft long lasting digital
             application.cv_short_description = response
             application.save()
             return Response({"message": response})
-        except Profile.DoesNotExist:
+        except:
             return Response({"error": "Profile does not exist."}, status=404)
-        

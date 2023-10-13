@@ -12,17 +12,25 @@ class Application(models.Model):
     company = models.CharField(max_length=255)
     description = models.TextField()
     cover_letter_text = models.TextField(blank=True)
-    cover_letter_file = models.FileField(upload_to="saved_files/cover_letters/", blank=True)
+    cover_letter_file = models.FileField(
+        upload_to="saved_files/cover_letters/", blank=True
+    )
     cv_short_description = models.CharField(max_length=400, blank=True)
-    cv_file = models.FileField(upload_to="saved_files/cvs/",blank=True)
+    cv_file = models.FileField(upload_to="saved_files/cvs/", blank=True)
     company_email = models.EmailField(max_length=255)
     company_address = models.CharField(max_length=255, blank=True)
     source = models.CharField(max_length=255, blank=True)
     recruiter_name = models.CharField(max_length=255, default="John Doe")
-    recruiter_gender = models.ForeignKey(dependencies.Gender, on_delete=models.SET_DEFAULT, default=1)
+    recruiter_gender = models.ForeignKey(
+        dependencies.Gender, on_delete=models.SET_DEFAULT, default=1
+    )
     recruiter_position = models.CharField(max_length=255, default="CEO")
-    application_language = models.ForeignKey(dependencies.Language, on_delete=models.SET_DEFAULT, default=1)
-    status = models.ForeignKey(dependencies.Status, on_delete=models.SET_DEFAULT, default=1)
+    application_language = models.ForeignKey(
+        dependencies.Language, on_delete=models.SET_DEFAULT, default=1
+    )
+    status = models.ForeignKey(
+        dependencies.Status, on_delete=models.SET_DEFAULT, default=1
+    )
     status_date = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/v1/accounts/', include("accounts.urls")),
+    path("api/v1/accounts/", include("accounts.urls")),
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path("api/v1/applications/", include("applications.urls")),
     path("api/v1/dependencies/", include("dependencies.urls")),
@@ -28,5 +28,5 @@ urlpatterns = [
     path("api/v1/profiles/", include("profiles.urls")),
     path("api/v1/schedulers/", include("schedulers.urls")),
     path("api/v1/simulations/", include("simulations.urls")),
-    path("api/v1/email_sender/", include("email_sender.urls"))
+    path("api/v1/email_sender/", include("email_sender.urls")),
 ]

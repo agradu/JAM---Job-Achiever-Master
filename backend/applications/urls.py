@@ -6,5 +6,5 @@ router = DefaultRouter()
 router.register("item", ApplicationsViewSet, basename="applications")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

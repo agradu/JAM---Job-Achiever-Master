@@ -7,7 +7,14 @@ from .serializers import (
     ProfileLanguageSerializer,
     ProfileHobbySerializer,
 )
-from .models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
+from .models import (
+    Profile,
+    Education,
+    Experience,
+    ProfileSkill,
+    ProfileLanguage,
+    ProfileHobby,
+)
 from rest_framework.response import Response
 
 
@@ -15,6 +22,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
+
 
 class EducationViewSet(viewsets.ModelViewSet):
     queryset = Education.objects.all()
