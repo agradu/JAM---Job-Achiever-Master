@@ -1,7 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from profiles.models import (
-    Profile,
     Education,
     Experience,
     ProfileSkill,
@@ -10,7 +9,7 @@ from profiles.models import (
 )
 from applications.models import Application
 from dependencies import gpt_functions as gpt
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import HttpResponse
 from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string
@@ -71,7 +70,7 @@ class DownloadCV(APIView):
         return response
 
 
-class UpdateCvDescription(APIView):
+class UpdateCvDescriptionWithGPT(APIView):
     def get(self, request, pk):
         try:
             application = Application.objects.get(pk=pk)
