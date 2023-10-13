@@ -7,22 +7,24 @@ from datetime import datetime
 
 
 def run():
-    username = f"fake_user"
+    username = "fake_user"
     first_name = "John"
     last_name = "Doe"
-    email = f"john_doe@example.com"
+    email = "john_doe@example.com"
     password = "Pa$$w0rd1234!"
     try:
         user = User.objects.get(username=username)
         print("User already exist: delete the user...")
     except Exception:
-        user = User.objects.create(
+        user = User(
             username=username,
             first_name=first_name,
             last_name=last_name,
             password=password,
             email=email,
         )
+        user.set_password(password)
+        user.save()
         print("Fake user created!")
 
     languages = [

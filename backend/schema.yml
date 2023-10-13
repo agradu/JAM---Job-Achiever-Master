@@ -3,43 +3,6 @@ info:
   title: JAM - Job Achiever Master
   version: 0.0.0
 paths:
-  /api/v1/accounts/login/:
-    post:
-      operationId: api_v1_accounts_login_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/User'
-        required: true
-      security:
-      - tokenAuth: []
-      - {}
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: ''
-  /api/v1/accounts/logout/:
-    post:
-      operationId: api_v1_accounts_logout_create
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          description: No response body
   /api/v1/accounts/register/:
     post:
       operationId: api_v1_accounts_register_create
@@ -67,51 +30,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: ''
-  /api/v1/accounts/users/:
+  /api/v1/applications/:
     get:
-      operationId: api_v1_accounts_users_list
-      parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginatedUserList'
-          description: ''
-  /api/v1/accounts/users/{id}/:
-    get:
-      operationId: api_v1_accounts_users_retrieve
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user.
-        required: true
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: ''
-  /api/v1/applications/item/:
-    get:
-      operationId: api_v1_applications_item_list
+      operationId: api_v1_applications_list
       parameters:
       - name: page
         required: false
@@ -131,7 +52,7 @@ paths:
                 $ref: '#/components/schemas/PaginatedApplicationsList'
           description: ''
     post:
-      operationId: api_v1_applications_item_create
+      operationId: api_v1_applications_create
       tags:
       - api
       requestBody:
@@ -155,9 +76,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Applications'
           description: ''
-  /api/v1/applications/item/{id}/:
+  /api/v1/applications/{id}/:
     get:
-      operationId: api_v1_applications_item_retrieve
+      operationId: api_v1_applications_retrieve
       parameters:
       - in: path
         name: id
@@ -177,7 +98,7 @@ paths:
                 $ref: '#/components/schemas/Applications'
           description: ''
     put:
-      operationId: api_v1_applications_item_update
+      operationId: api_v1_applications_update
       parameters:
       - in: path
         name: id
@@ -209,7 +130,7 @@ paths:
                 $ref: '#/components/schemas/Applications'
           description: ''
     patch:
-      operationId: api_v1_applications_item_partial_update
+      operationId: api_v1_applications_partial_update
       parameters:
       - in: path
         name: id
@@ -240,7 +161,7 @@ paths:
                 $ref: '#/components/schemas/Applications'
           description: ''
     delete:
-      operationId: api_v1_applications_item_destroy
+      operationId: api_v1_applications_destroy
       parameters:
       - in: path
         name: id
@@ -1605,9 +1526,9 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/v1/schedulers/item/:
+  /api/v1/schedulers/:
     get:
-      operationId: api_v1_schedulers_item_list
+      operationId: api_v1_schedulers_list
       parameters:
       - name: page
         required: false
@@ -1627,7 +1548,7 @@ paths:
                 $ref: '#/components/schemas/PaginatedSchedulerSerialazerList'
           description: ''
     post:
-      operationId: api_v1_schedulers_item_create
+      operationId: api_v1_schedulers_create
       tags:
       - api
       requestBody:
@@ -1651,9 +1572,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SchedulerSerialazer'
           description: ''
-  /api/v1/schedulers/item/{id}/:
+  /api/v1/schedulers/{id}/:
     get:
-      operationId: api_v1_schedulers_item_retrieve
+      operationId: api_v1_schedulers_retrieve
       parameters:
       - in: path
         name: id
@@ -1673,7 +1594,7 @@ paths:
                 $ref: '#/components/schemas/SchedulerSerialazer'
           description: ''
     put:
-      operationId: api_v1_schedulers_item_update
+      operationId: api_v1_schedulers_update
       parameters:
       - in: path
         name: id
@@ -1705,7 +1626,7 @@ paths:
                 $ref: '#/components/schemas/SchedulerSerialazer'
           description: ''
     patch:
-      operationId: api_v1_schedulers_item_partial_update
+      operationId: api_v1_schedulers_partial_update
       parameters:
       - in: path
         name: id
@@ -1736,7 +1657,7 @@ paths:
                 $ref: '#/components/schemas/SchedulerSerialazer'
           description: ''
     delete:
-      operationId: api_v1_schedulers_item_destroy
+      operationId: api_v1_schedulers_destroy
       parameters:
       - in: path
         name: id
@@ -1751,9 +1672,153 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/v1/simulations/item/:
+  /api/v1/schema/:
     get:
-      operationId: api_v1_simulations_item_list
+      operationId: api_v1_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/simulations/simulations/:
+    get:
+      operationId: api_v1_simulations_simulations_list
       parameters:
       - name: page
         required: false
@@ -1773,7 +1838,7 @@ paths:
                 $ref: '#/components/schemas/PaginatedSimulationSerialazerList'
           description: ''
     post:
-      operationId: api_v1_simulations_item_create
+      operationId: api_v1_simulations_simulations_create
       tags:
       - api
       requestBody:
@@ -1797,9 +1862,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SimulationSerialazer'
           description: ''
-  /api/v1/simulations/item/{id}/:
+  /api/v1/simulations/simulations/{id}/:
     get:
-      operationId: api_v1_simulations_item_retrieve
+      operationId: api_v1_simulations_simulations_retrieve
       parameters:
       - in: path
         name: id
@@ -1819,7 +1884,7 @@ paths:
                 $ref: '#/components/schemas/SimulationSerialazer'
           description: ''
     put:
-      operationId: api_v1_simulations_item_update
+      operationId: api_v1_simulations_simulations_update
       parameters:
       - in: path
         name: id
@@ -1851,7 +1916,7 @@ paths:
                 $ref: '#/components/schemas/SimulationSerialazer'
           description: ''
     patch:
-      operationId: api_v1_simulations_item_partial_update
+      operationId: api_v1_simulations_simulations_partial_update
       parameters:
       - in: path
         name: id
@@ -1882,7 +1947,7 @@ paths:
                 $ref: '#/components/schemas/SimulationSerialazer'
           description: ''
     delete:
-      operationId: api_v1_simulations_item_destroy
+      operationId: api_v1_simulations_simulations_destroy
       parameters:
       - in: path
         name: id
@@ -2541,26 +2606,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StatusSerialazer'
-    PaginatedUserList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
     PasswordChange:
       type: object
       properties:
