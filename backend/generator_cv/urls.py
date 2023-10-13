@@ -1,8 +1,8 @@
 from django.urls import path, include
-from .views import UpdateCvDescription, generate_pdf
+from .views import UpdateCvDescriptionWithGPT, GeneratePdf
 
 
 urlpatterns = [
-    path("<int:pk>/", UpdateCvDescription.as_view(), name="Update CV description"),
-    path("pdf/<int:pk>/", generate_pdf, name="Generate PDF"),
+    path("<int:pk>/", UpdateCvDescriptionWithGPT.as_view(), name="update-cv-description"),
+    path("pdf/<int:pk>/", GeneratePdf.as_view(), name="generate-pdf"),
 ]
