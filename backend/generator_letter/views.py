@@ -10,9 +10,54 @@ from profiles.models import (
 )
 from applications.models import Application
 from dependencies import gpt_functions as gpt
+from django.shortcuts import render, HttpResponse
+from datetime import date
+import pdfkit, os
+from django.template.loader import render_to_string
 
 # Create your views here.
 
+class DownloadCoverLetter(APIView):
+    def get(self, request, pk):
+        try:
+            template = "generator_letter/letter.html"
+            application = Application.objects.get(pk=pk)
+            profile = application.profile
+            user = profile.user
+            today = date.today()
+        except:
+            return Response({"error": "Profile does not exist."}, status=404)
+
+        context = {
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "address": profile.address,
+            "phone": profile.phone,
+            "email": user.email,
+            "company": application.company,
+            "company_email": application.company_email,
+            "company_address": application.company_address,
+            "recruiter_name": application.recruiter_name,
+            "subject": application.position,
+            "body": application.cover_letter_text,
+            "date": today.strftime("%d.%m.%Y"),
+        }
+
+        options = {
+            "page-size": "A4",
+            "margin-top": "20mm",
+            "margin-right": "20mm",
+            "margin-bottom": "20mm",
+            "margin-left": "20mm",
+            'enable-local-file-access': True
+        }
+        output_file_name = f"cover-letter {user.first_name} {user.last_name}.pdf"
+        html_content = render(request, template, context)
+        source = html_content.content.decode()
+        pdf = pdfkit.from_string(source, False, options=options)
+        response = HttpResponse(pdf, content_type="application/pdf")
+        response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
+        return response
 
 class UpdateCoverLetter(APIView):
     def get(self, request, pk):

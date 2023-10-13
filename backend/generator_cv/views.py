@@ -12,56 +12,63 @@ from applications.models import Application
 from dependencies import gpt_functions as gpt
 from django.shortcuts import render, HttpResponse
 from datetime import date
-import pdfkit
+import pdfkit, os
 from django.template.loader import render_to_string
 
 # Create your views here.
 
+class DownloadCV(APIView):
+    def get(self, request, pk):
+        try:
+            template = "generator_cv/cv.html"
+            application = Application.objects.get(pk=pk)
+            profile = application.profile
+            user = profile.user
+            education_list = Education.objects.filter(profile=profile)
+            experience_list = Experience.objects.filter(profile=profile)
+            skill_list = ProfileSkill.objects.filter(profile=profile)
+            language_list = ProfileLanguage.objects.filter(profile=profile)
+            hobby_list = ProfileHobby.objects.filter(profile=profile)
+            today = date.today()
+            abs_path = os.path.abspath("")
+            picture = f"{abs_path}{profile.picture.url}"
+        except:
+            return Response({"error": "Profile does not exist."}, status=404)
 
-def generate_pdf(request, pk):
-    template = "generator_cv/cv.html"
-    application = Application.objects.get(pk=pk)
-    profile = application.profile
-    user = profile.user
-    education_list = Education.objects.filter(profile=profile)
-    experience_list = Experience.objects.filter(profile=profile)
-    skill_list = ProfileSkill.objects.filter(profile=profile)
-    language_list = ProfileLanguage.objects.filter(profile=profile)
-    hobby_list = ProfileHobby.objects.filter(profile=profile)
-    today = date.today()
+        context = {
+            "picture": picture, # http://127.0.0.1:8000/saved_files/profile_pictures/cavaler.jpg
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "birthday": profile.birthday,
+            "address": profile.address,
+            "phone": profile.phone,
+            "email": user.email,
+            "portfolio": profile.portfolio_link,
+            "facebook": profile.social_link,
+            "educations": education_list,
+            "experiences": experience_list,
+            "skills": skill_list,
+            "hobbies": hobby_list,
+            "languages": language_list,
+            "description": application.cv_short_description,
+            "date": today.strftime("%d.%m.%Y"),
+        }
 
-    context = {
-        "picture": profile.picture,
-        "first_name": user.first_name,
-        "last_name": user.last_name,
-        "birthday": profile.birthday,
-        "address": profile.address,
-        "phone": profile.phone,
-        "email": user.email,
-        "portfolio": profile.portfolio_link,
-        "facebook": profile.social_link,
-        "educations": education_list,
-        "experiences": experience_list,
-        "skills": skill_list,
-        "hobbies": hobby_list,
-        "languages": language_list,
-        "description": application.cv_short_description,
-        "date": today.strftime("%d.%m.%Y"),
-    }
-
-    options = {
-        "page-size": "A4",
-        "margin-top": "20mm",
-        "margin-right": "20mm",
-        "margin-bottom": "20mm",
-        "margin-left": "20mm",
-    }
-    output_file_name = f"cv_{user.last_name}_{pk}.pdf"
-    html_content = render_to_string(template, context)
-    pdf = pdfkit.from_string(html_content, False, options=options)
-    response = HttpResponse(pdf, content_type="application/pdf")
-    response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
-    return response
+        options = {
+            "page-size": "A4",
+            "margin-top": "20mm",
+            "margin-right": "20mm",
+            "margin-bottom": "20mm",
+            "margin-left": "20mm",
+            'enable-local-file-access': True
+        }
+        output_file_name = f"cv {user.first_name} {user.last_name}.pdf"
+        html_content = render(request, template, context)
+        source = html_content.content.decode()
+        pdf = pdfkit.from_string(source, False, options=options)
+        response = HttpResponse(pdf, content_type="application/pdf")
+        response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
+        return response
 
 
 class UpdateCvDescription(APIView):

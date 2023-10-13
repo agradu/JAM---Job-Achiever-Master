@@ -22,9 +22,10 @@
 			<tbody>
 				<tr>
 					<td rowspan="2">
-						{% load static %}
-						<img src="{% static picture %}" class="img-fluid rounded-circle">
+						<div style="width: 200px; height: 200px; overflow: hidden; border-radius: 50%;">
+							<img src="{{ picture }}" class="img-fluid">
 						</img>
+						</div>
 					</td>
 					<td>
 						<h2>{{ first_name }}</h2>
@@ -42,8 +43,12 @@
 						<p><i class="fa-solid fa-location-dot"></i> <b>Adress</b><br>{{ address }}</p>
 						<p><i class="fa-solid fa-phone"></i> <b>Phone</b><br>{{ phone }}</p>
 						<p><i class="fa-solid fa-envelope"></i> <b>Email</b><br>{{ email }}</p>
+						{% if portfolio != None and portfolio != "" %}
 						<p><i class="fa-regular fa-folder-open"></i> <b>Portfolio</b><br>{{ portfolio }}</p>
+						{% endif %}
+						{% if facebook != None and facebook != "" %}
 						<p><i class="fa-brands fa-facebook"></i> <b>Facebook</b><br>{{ facebook }}</p>
+						{% endif %}
 						<h3 class="pt-3">Skills</h3>
 						<p>
 							{% for skill in skills %}
