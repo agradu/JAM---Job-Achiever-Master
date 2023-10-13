@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # extra needed apps
     "django_extensions",
     "drf_spectacular",
+    "allauth",
     # user created apps
     "accounts",
     "applications",
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     "simulations",
     "email_sender",
     "drf-spectacular",
+    "corsheaders",
 ]
 
 
@@ -72,6 +74,14 @@ EMAIL_USE_TLS=True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+AUTHENTICATION_BACKENDS = [
+    # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # Needed to login by username in Django admin, regardless of allauth
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
@@ -94,12 +104,15 @@ AUTHENTICATION_BACKENDS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ALLOWED_ORIGINS = [ 'http://localhost:5173', ]
 
 ROOT_URLCONF = "api.urls"
 

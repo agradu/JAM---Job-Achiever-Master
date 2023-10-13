@@ -18,6 +18,7 @@ django-extensions==3.2.3
 django-rest-authtoken==2.1.4
 django-rest-framework==0.1.0
 djangorestframework==3.14.0
+django-cors-headers==4.3.0
 drf-spectacular==0.26.4
 Faker==19.10.0
 frozenlist==1.4.0

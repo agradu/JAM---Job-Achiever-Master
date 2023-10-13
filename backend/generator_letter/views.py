@@ -50,26 +50,39 @@ Don't mention unnecesary informations from my experience or education.
 Write the text of the letter in {application.application_language} in a concise and bold style suitable for the job to which the candidate is applying.
 You don't ask questions or say anything other than the content of the cover letter."""
             
-            gpt.openai.api_key = profile.api_key
-
             messages = [
                 gpt.bot_message("system", formated_info),
                 gpt.bot_message("user", role_description),
             ]
             
             try:
-                if profile.api_key != "":
+                if profile.api_key not in ["", None]:
+                    gpt.openai.api_key = profile.api_key
                     response = gpt.bot_request(messages)
                 else:
-                    response = gpt.bot_request(messages)
-                    application.cover_letter_text = response
-                    application.save()
-                    return Response({"response": response})
-            except Exception as e:
+                    response = """Dear Hiring Manager,
+
+I am writing to express my strong interest in the Working Student Cloud Services position at Adobe Systems Europe Limited, as advertised on Stepstone. With a passion for technology and a solid foundation in web development, I am excited about the opportunity to contribute to Adobe's innovative and dynamic team.
+
+My educational background includes a PHP and MySQL Developer course at Avantaj Consulting in Bucharest, where I honed my skills in HTML, PHP, and MySQL. During this time, I developed a complex web application with a login system and user interface, utilizing databases. Additionally, I recently completed a Python Back-end Developer course at DCI Digital Career Institute GmbH in Berlin, which provided me with training in Python, databases, Django, APIs, and cloud services.
+
+I believe that my technical skills, along with my curiosity about application and infrastructure security and compliance topics, make me a strong candidate for this role. I have experience reading and writing code in various programming languages, including Python, and I am comfortable working with command line interfaces and shell scripts. My education and training have equipped me with a basic understanding of cloud platforms, containerization, and distributed systems.
+
+What excites me about the Working Student Cloud Services position at Adobe is the opportunity to learn and contribute to a secure and compliant cloud service environment. I am dedicated to ensuring that large-scale web services are designed, developed, tested, and operated securely. My automation-first mentality and willingness to speak up when necessary align with Adobe's commitment to excellence in security and compliance.
+
+Furthermore, I am fluent in English and am eager to learn German to enhance my communication skills. I believe that my background and enthusiasm for technology, along with my commitment to teamwork and self-organization, make me a valuable addition to the Adobe Cloud Platform - Security & Compliance team.
+
+Thank you for considering my application. I look forward to the possibility of contributing to Adobe's mission of creating exceptional digital experiences. Please feel free to reach out to me at your earliest convenience to discuss my qualifications in more detail.
+
+Sincerely,
+
+John Doe"""
+                application.cover_letter_text = response
+            except:
                 application.cover_letter_text = "Error processing request."
-                application.save()
-                return Response({"error": "Error processing request."}, status=500)
-        
+                return Response({"error": f"Error processing request."}, status=500)
+            application.save()
+            return Response({"response": response})
         except Profile.DoesNotExist:
-            return Response(status=404)
+            return Response({"error": "Profile does not exist."}, status=404)
         
