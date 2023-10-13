@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "schedulers",
     "simulations",
     "email_sender",
+    "drf-spectacular",
 ]
 
 
