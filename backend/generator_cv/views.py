@@ -1,7 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from profiles.models import (
-    Profile,
     Education,
     Experience,
     ProfileSkill,
@@ -10,12 +9,13 @@ from profiles.models import (
 )
 from applications.models import Application
 from dependencies import gpt_functions as gpt
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import HttpResponse
 from datetime import date
 import pdfkit
 from django.template.loader import render_to_string
 
 # Create your views here.
+
 
 class GeneratePdf(APIView):
     def get(self, request, pk):
@@ -61,6 +61,7 @@ class GeneratePdf(APIView):
         pdf = pdfkit.from_string(html_content, False, options=options)
         response = HttpResponse(pdf, content_type="application/pdf")
         response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
+        # TODO: Fix this if not working
         return response
 
 
