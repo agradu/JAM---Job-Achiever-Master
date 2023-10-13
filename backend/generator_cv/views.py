@@ -9,7 +9,7 @@ from profiles.models import (
 )
 from applications.models import Application
 from dependencies import gpt_functions as gpt
-from django.shortcuts import HttpResponse
+from django.shortcuts import render, HttpResponse
 from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string

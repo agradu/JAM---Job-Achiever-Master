@@ -59,7 +59,7 @@ class DownloadCoverLetter(APIView):
         response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
         return response
 
-class UpdateCoverLetter(APIView):
+class UpdateCoverLetterWithGPT(APIView):
     def get(self, request, pk):
         try:
             application = Application.objects.get(pk=pk)
