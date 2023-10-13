@@ -3,8 +3,8 @@ from rest_framework import routers
 from .views import SchedulerViewSet
 
 router = routers.DefaultRouter()
-router.register('item', SchedulerViewSet, basename='scheduler')
+router.register("item", SchedulerViewSet, basename="scheduler")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

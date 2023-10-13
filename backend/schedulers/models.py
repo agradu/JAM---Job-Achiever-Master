@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from applications.models import Application
+
 # Create your models here.
 
 
@@ -12,4 +13,4 @@ class Scheduler(models.Model):
     interview_time_after = models.TimeField()
 
     def __str__(self):
-        return f"{self.user.username} with {self.application.company} at {self.interview_shedule}" 
+        return f"{self.user.username} with {self.application.company} at {self.interview_shedule}"

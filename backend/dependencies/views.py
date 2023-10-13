@@ -5,15 +5,18 @@ from .serialazers import LanguageSerialazer, GenderSerialazer, StatusSerialazer
 
 # Create your views here.
 
+
 class LanguageViewSet(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerialazer
     permission_classes = [permissions.IsAuthenticated]
 
+
 class GenderViewSet(viewsets.ModelViewSet):
     queryset = Gender.objects.all()
     serializer_class = GenderSerialazer
     permission_classes = [permissions.IsAuthenticated]
+
 
 class StatusViewSet(viewsets.ModelViewSet):
     queryset = Status.objects.all()

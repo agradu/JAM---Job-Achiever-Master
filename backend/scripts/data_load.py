@@ -6,7 +6,7 @@ from schedulers.models import Scheduler
 from datetime import datetime
 
 
-def run():    
+def run():
     username = f"fake_user"
     first_name = "John"
     last_name = "Doe"
@@ -17,9 +17,14 @@ def run():
         print("User already exist: delete the user...")
     except Exception:
         user = User.objects.create(
-            username=username, first_name=first_name, last_name=last_name, password=password, email=email)
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            password=password,
+            email=email,
+        )
         print("Fake user created!")
-    
+
     languages = [
         "Arabic",
         "Bengali",
@@ -58,71 +63,71 @@ def run():
         "Urdu",
         "Vietnamese",
     ]
-    for language in languages: 
+    for language in languages:
         Language.objects.get_or_create(language=language)
-        
+
     genders = ["Male", "Female", "Other"]
-    
-    for gender in genders: 
+
+    for gender in genders:
         Gender.objects.get_or_create(gender=gender)
-    
+
     statuses = ["Saved", "Applied", "Scheduled", "Accepted", "Rejected"]
-    
-    for status in statuses: 
+
+    for status in statuses:
         Status.objects.get_or_create(status=status)
-        
+
     profile, created = Profile.objects.get_or_create(
-        user = user,
-        gender = Gender.objects.get(gender="Male"),  
-        phone = "0123456789",
-        address = "High Street 1 Cambridge CB1 NB1"
+        user=user,
+        gender=Gender.objects.get(gender="Male"),
+        phone="0123456789",
+        address="High Street 1 Cambridge CB1 NB1",
     )
-    
+
     Education.objects.get_or_create(
-        profile = profile,
-        title = "B.Sc. History",
-        school = "University",
-        description = "Course about ...",
-        start_date = datetime.now(),
-        end_date = datetime.now(),
+        profile=profile,
+        title="B.Sc. History",
+        school="University",
+        description="Course about ...",
+        start_date=datetime.now(),
+        end_date=datetime.now(),
     )
-    
+
     Experience.objects.get_or_create(
-        profile = profile,
-        title = "Junior Developer",
-        company = "Searchmetrics",
-        description = "Helped to develop...",
-        start_date = datetime.now(),
-        end_date = datetime.now(),        
+        profile=profile,
+        title="Junior Developer",
+        company="Searchmetrics",
+        description="Helped to develop...",
+        start_date=datetime.now(),
+        end_date=datetime.now(),
     )
-    
+
     ProfileSkill.objects.get_or_create(
-        profile = profile,
-        description = "Teamwork, critical thinking",
+        profile=profile,
+        description="Teamwork, critical thinking",
     )
-    
+
     ProfileHobby.objects.get_or_create(
-        profile = profile,
-        description = "Board game, reading",     
+        profile=profile,
+        description="Board game, reading",
     )
-    
+
     ProfileLanguage.objects.get_or_create(
-        profile = profile,
-        description = "English, Language",
+        profile=profile,
+        description="English, Language",
     )
-    
+
     application, created = Application.objects.get_or_create(
-        profile = profile,
-        position = "Senior Developer",
-        company = "Google",
-        description = "Develop ...",
-        company_email = "jude.smiley.python@gmail.com"   
+        profile=profile,
+        position="Senior Developer",
+        company="Google",
+        description="Develop ...",
+        company_email="jude.smiley.python@gmail.com",
     )
-    
+
     Scheduler.objects.get_or_create(
-        user = user,
-        application = application,
-        interview_shedule = "2023-10-12 12:00:00",
-        interview_time_before = "11:00",
-        interview_time_after = "14:00",
+        user=user,
+        application=application,
+        interview_shedule="2023-10-12 12:00:00",
+        interview_time_before="11:00",
+        interview_time_after="14:00",
     )

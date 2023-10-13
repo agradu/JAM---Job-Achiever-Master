@@ -7,10 +7,12 @@ class LanguageSerialazer(serializers.ModelSerializer):
         model = Language
         fields = "__all__"
 
+
 class GenderSerialazer(serializers.ModelSerializer):
     class Meta:
         model = Gender
         fields = "__all__"
+
 
 class StatusSerialazer(serializers.ModelSerializer):
     class Meta:

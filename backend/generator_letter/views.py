@@ -1,10 +1,18 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from profiles.models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
+from profiles.models import (
+    Profile,
+    Education,
+    Experience,
+    ProfileSkill,
+    ProfileLanguage,
+    ProfileHobby,
+)
 from applications.models import Application
 from dependencies import gpt_functions as gpt
 
 # Create your views here.
+
 
 class UpdateCoverLetter(APIView):
     def get(self, request, pk):
@@ -49,12 +57,12 @@ Provide only the body text of the cover letter without header or footer.
 Don't mention unnecesary informations from my experience or education.
 Write the text of the letter in {application.application_language} in a concise and bold style suitable for the job to which the candidate is applying.
 You don't ask questions or say anything other than the content of the cover letter."""
-            
+
             messages = [
                 gpt.bot_message("system", formated_info),
                 gpt.bot_message("user", role_description),
             ]
-            
+
             try:
                 if profile.api_key not in ["", None]:
                     gpt.openai.api_key = profile.api_key
@@ -83,6 +91,5 @@ John Doe"""
                 return Response({"error": f"Error processing request."}, status=500)
             application.save()
             return Response({"response": response})
-        except Application.DoesNotExist:
+        except:
             return Response({"error": "Profile does not exist."}, status=404)
-        

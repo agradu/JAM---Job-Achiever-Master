@@ -1,5 +1,12 @@
 from rest_framework import serializers
-from .models import Profile, Education, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
+from .models import (
+    Profile,
+    Education,
+    Experience,
+    ProfileSkill,
+    ProfileLanguage,
+    ProfileHobby,
+)
 
 
 class ProfileSerializer(serializers.ModelSerializer):

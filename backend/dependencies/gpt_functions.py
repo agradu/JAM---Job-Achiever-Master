@@ -1,5 +1,6 @@
 import openai
 
+
 def bot_request(messages):
     """Takes all the messages needed for response in this format:
     [
