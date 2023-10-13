@@ -56,7 +56,7 @@ def generate_pdf(request, pk):
         "margin-bottom": "20mm",
         "margin-left": "20mm",
     }
-    output_file_name = f"cv_{user.last_name}.pdf"
+    output_file_name = f"cv_{user.last_name}_{pk}.pdf"
     html_content = render_to_string(template, context)
     pdf = pdfkit.from_string(html_content, False, options=options)
     response = HttpResponse(pdf, content_type="application/pdf")
