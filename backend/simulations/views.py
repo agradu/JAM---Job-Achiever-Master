@@ -87,7 +87,7 @@ You will be focused to cover all the necesary job questions with a {simulation.r
         except:
             return Response({"error": f"Simulation {request.data['pk']} does not exist."}, status=404)
         
-class AnalizeInterviewWithGPT(APIView):
+class AnalyzeInterviewWithGPT(APIView):
     def post(self, request):
         try:
             simulation = Simulation.objects.get(pk=request.data["pk"])
@@ -141,7 +141,7 @@ You don't ask questions or say anything other than the comments on the dialogs f
                     gpt.openai.api_key = profile.api_key
                     bot_response = gpt.bot_request(messages)
                 else:
-                    bot_response = f"Due to the lack of an API key, I cannot analize the given informations. But you can try to buy one here https://openai.com/pricing"
+                    bot_response = f"Due to the lack of an API key, I cannot analyze the given informations. But you can try to buy one here https://openai.com/pricing"
                 simulation.review = bot_response
                 simulation.save()
             except:
