@@ -104,8 +104,8 @@ Write the text of the letter in {application.application_language} in a concise 
 You don't ask questions or say anything other than the content of the cover letter."""
 
             messages = [
-                gpt.bot_message("system", formated_info),
-                gpt.bot_message("user", role_description),
+                gpt.bot_message("system", role_description),
+                gpt.bot_message("user", formated_info),
             ]
 
             try:

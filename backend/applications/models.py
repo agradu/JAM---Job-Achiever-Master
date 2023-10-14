@@ -22,7 +22,7 @@ class Application(models.Model):
     )
     recruiter_position = models.CharField(max_length=255, default="CEO")
     application_language = models.ForeignKey(
-        dependencies.Language, on_delete=models.SET_DEFAULT, default=1
+        dependencies.Language, on_delete=models.SET_DEFAULT, default=8
     )
     status = models.ForeignKey(
         dependencies.Status, on_delete=models.SET_DEFAULT, default=1

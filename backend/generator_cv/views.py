@@ -113,8 +113,8 @@ You will create only the statement.
 The statement must have less than 255 characters and must not contain your name."""
 
             messages = [
-                gpt.bot_message("system", formated_info),
-                gpt.bot_message("user", role_description),
+                gpt.bot_message("system", role_description),
+                gpt.bot_message("user", formated_info),
             ]
 
             try:

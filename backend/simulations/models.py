@@ -1,19 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 from applications.models import Application
-from dependencies import models as dependencies
+from dependencies.models import Language
 
 # Create your models here.
-
 
 class Simulation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     recruiter_attitude = models.CharField(max_length=150, null=True, blank=True)
-    language = models.ForeignKey(
-        dependencies.Language, on_delete=models.SET_DEFAULT, default=1
-    )
-    json_file = models.TextField(null=True, blank=True)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, default=8)
+    json_file = models.JSONField(default=list)
     review = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
