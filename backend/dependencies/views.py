@@ -1,20 +1,20 @@
 from rest_framework import viewsets
 from rest_framework import permissions
 from .models import Language, Gender, Status
-from .serialazers import LanguageSerialazer, GenderSerialazer, StatusSerialazer
+from .serializers import LanguageSerializer, GenderSerializer, StatusSerialazer
 
 # Create your views here.
 
 
 class LanguageViewSet(viewsets.ModelViewSet):
     queryset = Language.objects.all()
-    serializer_class = LanguageSerialazer
+    serializer_class = LanguageSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
 class GenderViewSet(viewsets.ModelViewSet):
     queryset = Gender.objects.all()
-    serializer_class = GenderSerialazer
+    serializer_class = GenderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
