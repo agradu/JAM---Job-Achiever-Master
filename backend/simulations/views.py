@@ -128,7 +128,7 @@ class AnalyzeInterviewWithGPT(APIView):
             formated_info += json.dumps(simulation.json_file[3:])
 
             role_description = f"""You are a job interview adviser.
-Based on the input you receive, you will comment in {simulation.language} the answers of the candidate.
+Based on the input you receive, you will comment in {simulation.language} the answers of the candidate named 'user' provided in a json format.
 You will sugest better answers for candidate when his are not good enough.
 You don't ask questions or say anything other than the comments on the dialogs from job interview."""
 
