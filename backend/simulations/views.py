@@ -58,7 +58,7 @@ class SimulateInterviewWithGPT(APIView):
             formated_info += "JOB INFORMATIONS: "
             formated_info += f"The job was found on {application.source} having '{application.position}' as position.\n"
             formated_info += "\nDESIRED JOB DESCRIPTION:\n\n"
-            formated_info += f"{application.description}"       
+            formated_info += f"{application.description}"
 
             role_description = f"""You'll interview in {simulation.language} a candidate for a job.
 As a recruiter for this job you have to put important questions to the candidate acording to the job description and react to his answers.
@@ -85,8 +85,12 @@ You will be focused to cover all the necesary job questions with a {simulation.r
                 return Response({"error": f"Error processing request."}, status=500)
             return Response({"bot_response": bot_response})
         except:
-            return Response({"error": f"Simulation {request.data['pk']} does not exist."}, status=404)
-        
+            return Response(
+                {"error": f"Simulation {request.data['pk']} does not exist."},
+                status=404,
+            )
+
+
 class AnalyzeInterviewWithGPT(APIView):
     def post(self, request):
         try:
@@ -123,7 +127,7 @@ class AnalyzeInterviewWithGPT(APIView):
             formated_info += "JOB INFORMATIONS: "
             formated_info += f"The job was found on {application.source} having '{application.position}' as position.\n"
             formated_info += "\nDESIRED JOB DESCRIPTION:\n\n"
-            formated_info += f"{application.description}\n\n" 
+            formated_info += f"{application.description}\n\n"
             formated_info += "THE INTERVIEW CONTENT IN JSON FORMAT:\n\n"
             formated_info += json.dumps(simulation.json_file[3:])
 
@@ -148,4 +152,7 @@ You don't ask questions or say anything other than the comments on the dialogs f
                 return Response({"error": f"Error processing request."}, status=500)
             return Response({"bot_response": bot_response})
         except:
-            return Response({"error": f"Simulation {request.data['pk']} does not exist."}, status=404)
+            return Response(
+                {"error": f"Simulation {request.data['pk']} does not exist."},
+                status=404,
+            )

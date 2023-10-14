@@ -5,6 +5,7 @@ from dependencies.models import Language
 
 # Create your models here.
 
+
 class Simulation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
