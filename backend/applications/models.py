@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from profiles.models import Profile
 from dependencies import models as dependencies
+from datetime import datetime
 
 # Create your models here.
 
@@ -27,8 +28,13 @@ class Application(models.Model):
     status = models.ForeignKey(
         dependencies.Status, on_delete=models.SET_DEFAULT, default=1
     )
-    status_date = models.DateTimeField(auto_now_add=True)
+    status_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        self.status_date = datetime.now()
+        return super(Application, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.position} - {self.company} ({self.created_at})"
