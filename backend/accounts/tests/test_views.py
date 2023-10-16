@@ -31,7 +31,7 @@ class TestViews(APITestCase):
         res = self.client.post(reverse("rest_login"), self.user_data, format="json")
         self.assertEqual(res.status_code, 200)
         # check for Token (also known as key)
-        self.assertTrue("key" in res.json())
+        self.assertTrue("key" in res.data)
 
     def test_user_login_fail(self):
         res = self.client.post(
