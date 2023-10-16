@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import permissions
 from rest_framework.response import Response
 from profiles.models import (
     Profile,
@@ -15,9 +16,9 @@ from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string
 
-# Create your views here.
-
+# Build the cover letter template in a pdf
 class DownloadCoverLetter(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         try:
             template = "generator_letter/letter.html"
@@ -59,7 +60,9 @@ class DownloadCoverLetter(APIView):
         response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
         return response
 
+# Fill the fields of the actual cover letter on the basis of the data in DB
 class UpdateCoverLetterWithGPT(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         try:
             application = Application.objects.get(pk=pk)

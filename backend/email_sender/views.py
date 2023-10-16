@@ -14,7 +14,7 @@ class Sendmail(APIView):
         try:
             application = Application.objects.get(pk=request.data["pk"])
             email = mail.EmailMessage(
-                subject=application.position,
+                subject=f"Application for: {application.position}",
                 body=application.cover_letter_text,
                 from_email=settings.EMAIL_HOST_USER,
                 to=[application.company_email],

@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import permissions
 from rest_framework.response import Response
 from profiles.models import (
     Education,
@@ -14,9 +15,9 @@ from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string
 
-# Create your views here.
-
+# Build the CV template in a pdf
 class DownloadCV(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         try:
             template = "generator_cv/cv.html"
@@ -69,8 +70,9 @@ class DownloadCV(APIView):
         response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
         return response
 
-
+# Fill the fields of the actual CV on the basis of the data in DB
 class UpdateCvDescriptionWithGPT(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         try:
             application = Application.objects.get(pk=pk)

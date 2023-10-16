@@ -14,14 +14,15 @@ from .serialazers import SimulationSerialazer
 import json
 
 
-# Create your views here.
+# Recover simulations data from the DB
 class SimulationViewSet(viewsets.ModelViewSet):
     queryset = Simulation.objects.all()
     serializer_class = SimulationSerialazer
     permission_classes = [permissions.IsAuthenticated]
 
-
+# Build the virtual job interviewer
 class SimulateInterviewWithGPT(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
         try:
             simulation = Simulation.objects.get(pk=request.data["pk"])
@@ -64,6 +65,7 @@ class SimulateInterviewWithGPT(APIView):
 As a recruiter for this job you have to put important questions to the candidate acording to the job description and react to his answers.
 You will be focused to cover all the necesary job questions with a {simulation.recruiter_attitude} attitude."""
 
+            # Simulate the interview and save it in the DB in a json format text 
             messages = [
                 gpt.bot_message("system", role_description),
                 gpt.bot_message("user", formated_info),
@@ -90,8 +92,9 @@ You will be focused to cover all the necesary job questions with a {simulation.r
                 status=404,
             )
 
-
+# Build the virtual job analyzer
 class AnalyzeInterviewWithGPT(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
         try:
             simulation = Simulation.objects.get(pk=request.data["pk"])
@@ -136,6 +139,7 @@ Based on the input you receive, you will comment in {simulation.language} the an
 You will sugest better answers for candidate when his are not good enough.
 You don't ask questions or say anything other than the comments on the dialogs from job interview."""
 
+            # Analyse the simulated job interview and save in the DB 
             messages = [
                 gpt.bot_message("system", role_description),
                 gpt.bot_message("user", formated_info),
