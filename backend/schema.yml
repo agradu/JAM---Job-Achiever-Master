@@ -3,33 +3,6 @@ info:
   title: JAM - Job Achiever Master
   version: 0.0.0
 paths:
-  /api/v1/accounts/register/:
-    post:
-      operationId: api_v1_accounts_register_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/User'
-        required: true
-      security:
-      - tokenAuth: []
-      - {}
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: ''
   /api/v1/applications/:
     get:
       operationId: api_v1_applications_list
@@ -192,6 +165,22 @@ paths:
       responses:
         '200':
           description: No response body
+  /api/v1/cv_generator/pdf/{id}/:
+    get:
+      operationId: api_v1_cv_generator_pdf_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
   /api/v1/dependencies/gender/:
     get:
       operationId: api_v1_dependencies_gender_list
@@ -211,7 +200,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedGenderSerialazerList'
+                $ref: '#/components/schemas/PaginatedGenderList'
           description: ''
     post:
       operationId: api_v1_dependencies_gender_create
@@ -221,13 +210,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenderSerialazer'
+              $ref: '#/components/schemas/Gender'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/GenderSerialazer'
+              $ref: '#/components/schemas/Gender'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/GenderSerialazer'
+              $ref: '#/components/schemas/Gender'
       security:
       - tokenAuth: []
       responses:
@@ -235,7 +224,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenderSerialazer'
+                $ref: '#/components/schemas/Gender'
           description: ''
   /api/v1/dependencies/gender/{id}/:
     get:
@@ -256,7 +245,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenderSerialazer'
+                $ref: '#/components/schemas/Gender'
           description: ''
     put:
       operationId: api_v1_dependencies_gender_update
@@ -273,13 +262,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenderSerialazer'
+              $ref: '#/components/schemas/Gender'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/GenderSerialazer'
+              $ref: '#/components/schemas/Gender'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/GenderSerialazer'
+              $ref: '#/components/schemas/Gender'
       security:
       - tokenAuth: []
       responses:
@@ -287,7 +276,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenderSerialazer'
+                $ref: '#/components/schemas/Gender'
           description: ''
     patch:
       operationId: api_v1_dependencies_gender_partial_update
@@ -304,13 +293,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedGenderSerialazer'
+              $ref: '#/components/schemas/PatchedGender'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedGenderSerialazer'
+              $ref: '#/components/schemas/PatchedGender'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedGenderSerialazer'
+              $ref: '#/components/schemas/PatchedGender'
       security:
       - tokenAuth: []
       responses:
@@ -318,7 +307,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenderSerialazer'
+                $ref: '#/components/schemas/Gender'
           description: ''
     delete:
       operationId: api_v1_dependencies_gender_destroy
@@ -355,7 +344,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedLanguageSerialazerList'
+                $ref: '#/components/schemas/PaginatedLanguageList'
           description: ''
     post:
       operationId: api_v1_dependencies_language_create
@@ -365,13 +354,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LanguageSerialazer'
+              $ref: '#/components/schemas/Language'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/LanguageSerialazer'
+              $ref: '#/components/schemas/Language'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/LanguageSerialazer'
+              $ref: '#/components/schemas/Language'
       security:
       - tokenAuth: []
       responses:
@@ -379,7 +368,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LanguageSerialazer'
+                $ref: '#/components/schemas/Language'
           description: ''
   /api/v1/dependencies/language/{id}/:
     get:
@@ -400,7 +389,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LanguageSerialazer'
+                $ref: '#/components/schemas/Language'
           description: ''
     put:
       operationId: api_v1_dependencies_language_update
@@ -417,13 +406,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LanguageSerialazer'
+              $ref: '#/components/schemas/Language'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/LanguageSerialazer'
+              $ref: '#/components/schemas/Language'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/LanguageSerialazer'
+              $ref: '#/components/schemas/Language'
       security:
       - tokenAuth: []
       responses:
@@ -431,7 +420,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LanguageSerialazer'
+                $ref: '#/components/schemas/Language'
           description: ''
     patch:
       operationId: api_v1_dependencies_language_partial_update
@@ -448,13 +437,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedLanguageSerialazer'
+              $ref: '#/components/schemas/PatchedLanguage'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedLanguageSerialazer'
+              $ref: '#/components/schemas/PatchedLanguage'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedLanguageSerialazer'
+              $ref: '#/components/schemas/PatchedLanguage'
       security:
       - tokenAuth: []
       responses:
@@ -462,7 +451,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LanguageSerialazer'
+                $ref: '#/components/schemas/Language'
           description: ''
     delete:
       operationId: api_v1_dependencies_language_destroy
@@ -637,6 +626,22 @@ paths:
   /api/v1/letter_generator/{id}/:
     get:
       operationId: api_v1_letter_generator_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/letter_generator/pdf/{id}/:
+    get:
+      operationId: api_v1_letter_generator_pdf_retrieve
       parameters:
       - in: path
         name: id
@@ -1672,150 +1677,26 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/v1/schema/:
-    get:
-      operationId: api_v1_schema_retrieve
-      description: |-
-        OpenApi3 schema for this API. Format can be selected via content negotiation.
-
-        - YAML: application/vnd.oai.openapi
-        - JSON: application/vnd.oai.openapi+json
-      parameters:
-      - in: query
-        name: format
-        schema:
-          type: string
-          enum:
-          - json
-          - yaml
-      - in: query
-        name: lang
-        schema:
-          type: string
-          enum:
-          - af
-          - ar
-          - ar-dz
-          - ast
-          - az
-          - be
-          - bg
-          - bn
-          - br
-          - bs
-          - ca
-          - ckb
-          - cs
-          - cy
-          - da
-          - de
-          - dsb
-          - el
-          - en
-          - en-au
-          - en-gb
-          - eo
-          - es
-          - es-ar
-          - es-co
-          - es-mx
-          - es-ni
-          - es-ve
-          - et
-          - eu
-          - fa
-          - fi
-          - fr
-          - fy
-          - ga
-          - gd
-          - gl
-          - he
-          - hi
-          - hr
-          - hsb
-          - hu
-          - hy
-          - ia
-          - id
-          - ig
-          - io
-          - is
-          - it
-          - ja
-          - ka
-          - kab
-          - kk
-          - km
-          - kn
-          - ko
-          - ky
-          - lb
-          - lt
-          - lv
-          - mk
-          - ml
-          - mn
-          - mr
-          - ms
-          - my
-          - nb
-          - ne
-          - nl
-          - nn
-          - os
-          - pa
-          - pl
-          - pt
-          - pt-br
-          - ro
-          - ru
-          - sk
-          - sl
-          - sq
-          - sr
-          - sr-latn
-          - sv
-          - sw
-          - ta
-          - te
-          - tg
-          - th
-          - tk
-          - tr
-          - tt
-          - udm
-          - uk
-          - ur
-          - uz
-          - vi
-          - zh-hans
-          - zh-hant
+  /api/v1/simulations/analyze/:
+    post:
+      operationId: api_v1_simulations_analyze_create
       tags:
       - api
       security:
       - tokenAuth: []
-      - {}
       responses:
         '200':
-          content:
-            application/vnd.oai.openapi:
-              schema:
-                type: object
-                additionalProperties: {}
-            application/yaml:
-              schema:
-                type: object
-                additionalProperties: {}
-            application/vnd.oai.openapi+json:
-              schema:
-                type: object
-                additionalProperties: {}
-            application/json:
-              schema:
-                type: object
-                additionalProperties: {}
-          description: ''
+          description: No response body
+  /api/v1/simulations/gpt/:
+    post:
+      operationId: api_v1_simulations_gpt_create
+      tags:
+      - api
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
   /api/v1/simulations/simulations/:
     get:
       operationId: api_v1_simulations_simulations_list
@@ -2204,6 +2085,177 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserDetails'
           description: ''
+  /registration/:
+    post:
+      operationId: registration_create
+      tags:
+      - registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /schema/download/:
+    get:
+      operationId: schema_download_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
 components:
   schemas:
     Applications:
@@ -2222,15 +2274,9 @@ components:
           type: string
         cover_letter_text:
           type: string
-        cover_letter_file:
-          type: string
-          format: uri
         cv_short_description:
           type: string
           maxLength: 400
-        cv_file:
-          type: string
-          format: uri
         company_email:
           type: string
           format: email
@@ -2250,7 +2296,6 @@ components:
         status_date:
           type: string
           format: date-time
-          readOnly: true
         created_at:
           type: string
           format: date-time
@@ -2332,7 +2377,7 @@ components:
       required:
       - id
       - profile
-    GenderSerialazer:
+    Gender:
       type: object
       properties:
         id:
@@ -2343,7 +2388,7 @@ components:
           maxLength: 50
       required:
       - id
-    LanguageSerialazer:
+    Language:
       type: object
       properties:
         id:
@@ -2426,7 +2471,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Experience'
-    PaginatedGenderSerialazerList:
+    PaginatedGenderList:
       type: object
       properties:
         count:
@@ -2445,8 +2490,8 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/GenderSerialazer'
-    PaginatedLanguageSerialazerList:
+            $ref: '#/components/schemas/Gender'
+    PaginatedLanguageList:
       type: object
       properties:
         count:
@@ -2465,7 +2510,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/LanguageSerialazer'
+            $ref: '#/components/schemas/Language'
     PaginatedProfileHobbyList:
       type: object
       properties:
@@ -2662,15 +2707,9 @@ components:
           type: string
         cover_letter_text:
           type: string
-        cover_letter_file:
-          type: string
-          format: uri
         cv_short_description:
           type: string
           maxLength: 400
-        cv_file:
-          type: string
-          format: uri
         company_email:
           type: string
           format: email
@@ -2690,7 +2729,6 @@ components:
         status_date:
           type: string
           format: date-time
-          readOnly: true
         created_at:
           type: string
           format: date-time
@@ -2757,7 +2795,7 @@ components:
           nullable: true
         profile:
           type: integer
-    PatchedGenderSerialazer:
+    PatchedGender:
       type: object
       properties:
         id:
@@ -2766,7 +2804,7 @@ components:
         gender:
           type: string
           maxLength: 50
-    PatchedLanguageSerialazer:
+    PatchedLanguage:
       type: object
       properties:
         id:
@@ -2880,8 +2918,8 @@ components:
           nullable: true
           maxLength: 150
         json_file:
-          type: string
-          nullable: true
+          type: object
+          additionalProperties: {}
         review:
           type: string
           nullable: true
@@ -3062,8 +3100,8 @@ components:
           nullable: true
           maxLength: 150
         json_file:
-          type: string
-          nullable: true
+          type: object
+          additionalProperties: {}
         review:
           type: string
           nullable: true
