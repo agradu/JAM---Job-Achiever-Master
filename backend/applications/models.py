@@ -32,7 +32,7 @@ class Application(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        ''' On save, update timestamps '''
+        """On save, update timestamps"""
         self.status_date = datetime.now()
         return super(Application, self).save(*args, **kwargs)
 

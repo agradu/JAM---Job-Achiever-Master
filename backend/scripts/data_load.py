@@ -7,10 +7,10 @@ from datetime import datetime
 
 
 def run():
-    username = "fake_user"
-    first_name = "John"
+    username = "jane92"
+    first_name = "Jane"
     last_name = "Doe"
-    email = "john_doe@example.com"
+    email = "jane_doe@example.com"
     password = "Pa$$w0rd1234!"
     try:
         user = User.objects.get(username=username)
@@ -20,12 +20,16 @@ def run():
             username=username,
             first_name=first_name,
             last_name=last_name,
-            password=password,
             email=email,
         )
+        "Chinese (Traditional)",
+        "Danish",
+        "Dutch",
+        "English",
+        "Esperanto",
         user.set_password(password)
         user.save()
-        print("Fake user created!")
+        print(f"User {username} created!")
 
     languages = [
         "Arabic",
@@ -81,31 +85,40 @@ def run():
     profile, created = Profile.objects.get_or_create(
         user=user,
         gender=Gender.objects.get(gender="Male"),
-        phone="0123456789",
-        address="High Street 1 Cambridge CB1 NB1",
+        phone="(+44) 0123456789",
+        address="11 The Spires, Canterbury CT2 8SD, UK",
     )
 
     Education.objects.get_or_create(
         profile=profile,
-        title="B.Sc. History",
-        school="University",
-        description="Course about ...",
-        start_date=datetime.now(),
-        end_date=datetime.now(),
+        title="M.Sc. Machine Learning",
+        school="University of Nottingham",
+        description="I learned how to identify and use relevant computational tools and programming techniques, apply statistical and physical principles to break down algorithms, and explain how they work.",
+        start_date="2018-09-01",
+        end_date="2021-06-30",
+    )
+    
+    Education.objects.get_or_create(
+        profile=profile,
+        title="B.Sc. Computer Science",
+        school="University of Manchester",
+        description="The course focused on the study of computer systems and software development: it provided me with a solid foundation in computer science principles, as well as practical skills in programming, data structures, algorithms, and software engineering.",
+        start_date="2015-09-01",
+        end_date="2018-06-30",
     )
 
     Experience.objects.get_or_create(
         profile=profile,
         title="Junior Developer",
-        company="Searchmetrics",
-        description="Helped to develop...",
-        start_date=datetime.now(),
-        end_date=datetime.now(),
+        company="SmartUp Software",
+        description="I provided assistance to support continuous improvement throughout the development life cycle of computer applications and wrote basic code, maintain applications, address bugs, and deploy app enhancements.",
+        start_date="2021-08-01",
+        end_date="2023-07-31",
     )
 
     ProfileSkill.objects.get_or_create(
         profile=profile,
-        description="Teamwork, critical thinking",
+        description="Teamwork, critical thinking,",
     )
 
     ProfileHobby.objects.get_or_create(
@@ -115,7 +128,7 @@ def run():
 
     ProfileLanguage.objects.get_or_create(
         profile=profile,
-        description="English, Language",
+        description="English, German",
     )
 
     application, created = Application.objects.get_or_create(

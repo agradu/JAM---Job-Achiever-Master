@@ -15,9 +15,10 @@ from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string
 
+
 # Download the CV in a pdf
 class DownloadCV(APIView):
-    #permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         try:
             template = "generator_cv/cv.html"
@@ -36,7 +37,7 @@ class DownloadCV(APIView):
             return Response({"error": "Profile does not exist."}, status=404)
 
         context = {
-            "picture": picture, # http://127.0.0.1:8000/saved_files/profile_pictures/cavaler.jpg
+            "picture": picture,  # http://127.0.0.1:8000/saved_files/profile_pictures/cavaler.jpg
             "first_name": user.first_name,
             "last_name": user.last_name,
             "birthday": profile.birthday,
@@ -60,19 +61,21 @@ class DownloadCV(APIView):
             "margin-right": "20mm",
             "margin-bottom": "20mm",
             "margin-left": "20mm",
-            'enable-local-file-access': True
+            "enable-local-file-access": True,
         }
         output_file_name = f"cv {user.first_name} {user.last_name}.pdf"
         html_content = render(request, template, context)
         source = html_content.content.decode()
         pdf = pdfkit.from_string(source, False, options=options)
         response = HttpResponse(pdf, content_type="application/pdf")
-        response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
+        response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
         return response
+
 
 # Update the fields of the actual CV on the basis of the data in DB
 class UpdateCvDescriptionWithGPT(APIView):
     permission_classes = [permissions.IsAuthenticated]
+
     def get(self, request, pk):
         try:
             application = Application.objects.get(pk=pk)
