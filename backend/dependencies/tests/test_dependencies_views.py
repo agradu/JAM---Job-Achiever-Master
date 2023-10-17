@@ -9,4 +9,3 @@ class TestViews(APITestCase):
     def test_user_chooses_English(self):
         pass
     
-    
