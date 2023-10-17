@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "drf_spectacular",
     "allauth",
-    'allauth.account',
-    'allauth.socialaccount',
+    "allauth.account",
+    "allauth.socialaccount",
     # user created apps
     "accounts",
     "applications",
@@ -119,7 +119,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://dci-e05-2023-frontend.onrender.com"
+    "https://dci-e05-2023-frontend.onrender.com",
 ]
 
 ROOT_URLCONF = "api.urls"

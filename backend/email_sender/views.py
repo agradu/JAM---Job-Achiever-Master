@@ -5,13 +5,14 @@ from django.core import mail
 from rest_framework.response import Response
 from applications.models import Application
 
+
 class Sendmail(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
         try:
             application = Application.objects.get(pk=request.data["pk"])
-            body=application.cover_letter_text
+            body = application.cover_letter_text
             body += f"\n\nhttp://localhost:8000/api/v1/cv_generator/pdf/{request.data['pk']}/"
 
             # Create and send the email with the attached file
@@ -21,10 +22,12 @@ class Sendmail(APIView):
                 from_email=settings.EMAIL_HOST_USER,
                 to=[application.company_email],
             )
-            
+
             email.send(fail_silently=False)
 
             return Response({"status": True, "message": "Email sent successfully"})
-            
+
         except Application.DoesNotExist:
-            return Response({"status": False, "message": "Application not found"}, status=404)
+            return Response(
+                {"status": False, "message": "Application not found"}, status=404
+            )
