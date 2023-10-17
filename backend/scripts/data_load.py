@@ -11,7 +11,7 @@ def run():
     first_name = "John"
     last_name = "Doe"
     email = "john_doe@example.com"
-    password = "Pa$$w0rd1234!"
+    password = "Pa$$word1234!"
     try:
         user = User.objects.get(username=username)
         print("User already exist: delete the user...")
@@ -20,7 +20,6 @@ def run():
             username=username,
             first_name=first_name,
             last_name=last_name,
-            password=password,
             email=email,
         )
         user.set_password(password)
