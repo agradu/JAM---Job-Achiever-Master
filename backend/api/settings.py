@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 
 
 # Add these two lines to send email (for example to recover a forgotten password)
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 SITE_ID = 1
 
 
@@ -119,6 +119,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://dci-e05-2023-frontend.onrender.com"
 ]
 
 ROOT_URLCONF = "api.urls"

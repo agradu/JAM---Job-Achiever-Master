@@ -1,28 +1,30 @@
 from django.conf import settings
-from rest_framework.views import APIView
 from rest_framework import permissions
-from django.core.mail import EmailMessage
-from applications.models import Application
+from rest_framework.views import APIView
+from django.core import mail
 from rest_framework.response import Response
-from generator_cv.views import UpdateCvDescriptionWithGPT
+from applications.models import Application
 
-# Create your views here.
 class Sendmail(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
         try:
             application = Application.objects.get(pk=request.data["pk"])
-            email = EmailMessage(
+            body=application.cover_letter_text
+            body += f"\n\nhttp://localhost:8000/api/v1/cv_generator/pdf/{request.data['pk']}/"
+
+            # Create and send the email with the attached file
+            email = mail.EmailMessage(
                 subject=f"Application for: {application.position}",
-                body=application.cover_letter_text,
+                body=body,
                 from_email=settings.EMAIL_HOST_USER,
                 to=[application.company_email],
             )
             
-            email.attach("cv")
-            
             email.send(fail_silently=False)
+
             return Response({"status": True, "message": "Email sent successfully"})
-        except:
-            return Response(status=404)
+            
+        except Application.DoesNotExist:
+            return Response({"status": False, "message": "Application not found"}, status=404)

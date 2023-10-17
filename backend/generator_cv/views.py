@@ -15,9 +15,9 @@ from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string
 
-# Build the CV template in a pdf
+# Download the CV in a pdf
 class DownloadCV(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
         try:
             template = "generator_cv/cv.html"
@@ -70,7 +70,7 @@ class DownloadCV(APIView):
         response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
         return response
 
-# Fill the fields of the actual CV on the basis of the data in DB
+# Update the fields of the actual CV on the basis of the data in DB
 class UpdateCvDescriptionWithGPT(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):

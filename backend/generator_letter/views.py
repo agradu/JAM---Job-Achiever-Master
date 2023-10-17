@@ -16,7 +16,7 @@ from datetime import date
 import pdfkit, os
 from django.template.loader import render_to_string
 
-# Build the cover letter template in a pdf
+# Download the cover letter in a pdf
 class DownloadCoverLetter(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
@@ -60,7 +60,7 @@ class DownloadCoverLetter(APIView):
         response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
         return response
 
-# Fill the fields of the actual cover letter on the basis of the data in DB
+# Update the fields of the cover letter on the basis of the data in DB
 class UpdateCoverLetterWithGPT(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request, pk):
