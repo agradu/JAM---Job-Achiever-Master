@@ -64,7 +64,7 @@ class DownloadCV(APIView):
             "margin-right": "20mm",
             "margin-bottom": "20mm",
             "margin-left": "20mm",
-            "enable-local-file-access": True,
+            "enable-local-file-access": False,
         }
         output_file_name = f"cv {user.first_name} {user.last_name}.pdf"
         html_content = render(request, template, context)
