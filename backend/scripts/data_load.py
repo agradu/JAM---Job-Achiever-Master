@@ -94,8 +94,8 @@ def run():
         title="M.Sc. Machine Learning",
         school="University of Nottingham",
         description="I learned how to identify and use relevant computational tools and programming techniques, apply statistical and physical principles to break down algorithms, and explain how they work.",
-        start_date="2018-09-01",
-        end_date="2021-06-30",
+        start_date="2015-09-01",
+        end_date="2018-06-30",
     )
     
     Education.objects.get_or_create(
@@ -103,8 +103,17 @@ def run():
         title="B.Sc. Computer Science",
         school="University of Manchester",
         description="The course focused on the study of computer systems and software development: it provided me with a solid foundation in computer science principles, as well as practical skills in programming, data structures, algorithms, and software engineering.",
-        start_date="2015-09-01",
-        end_date="2018-06-30",
+        start_date="2012-09-01",
+        end_date="2015-06-30",
+    )
+
+    Experience.objects.get_or_create(
+        profile=profile,
+        title="Call Agent",
+        company="Shoelando",
+        description="I provided assistance and technical support to the custormers in a friendly and polite manner"
+        start_date="2018-08-01",
+        end_date="2021-07-31",
     )
 
     Experience.objects.get_or_create(
@@ -118,10 +127,22 @@ def run():
 
     ProfileSkill.objects.get_or_create(
         profile=profile,
-        description="Teamwork, critical thinking,",
+        description="Teamwork"
+    )
+    ProfileSkill.objects.get_or_create(
+        profile=profile,
+        description="Critical thinking"
     )
 
     ProfileHobby.objects.get_or_create(
+        profile=profile,
+        description="Board game"
+    )
+
+    ProfileHobby.objects.get_or_create(
+        profile=profile,
+        description="Reading"
+    )ProfileHobby.objects.get_or_create(
         profile=profile,
         description="Board game, reading",
     )

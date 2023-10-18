@@ -74,7 +74,7 @@ class DownloadCV(APIView):
 
 # Update the fields of the actual CV on the basis of the data in DB
 class UpdateCvDescriptionWithGPT(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, pk):
         try:
