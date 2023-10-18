@@ -86,6 +86,7 @@ def run():
         user=user,
         gender=Gender.objects.get(gender="Male"),
         phone="(+44) 0123456789",
+        birthday="1995-03-28",
         address="11 The Spires, Canterbury CT2 8SD, UK",
     )
 

@@ -32,7 +32,10 @@ class DownloadCV(APIView):
             hobby_list = ProfileHobby.objects.filter(profile=profile)
             today = date.today()
             abs_path = os.path.abspath("")
-            picture = f"{abs_path}{profile.picture.url}"
+            try:
+                picture = f"{abs_path}{profile.picture.url}"
+            except:
+                picture = f"{abs_path}profile_pictures/cavaler.jpg"
         except:
             return Response({"error": "Profile does not exist."}, status=404)
 
