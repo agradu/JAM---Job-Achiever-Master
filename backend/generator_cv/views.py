@@ -32,10 +32,10 @@ class DownloadCV(APIView):
             hobby_list = ProfileHobby.objects.filter(profile=profile)
             today = date.today()
             abs_path = os.path.abspath("")
-            try:
-                picture = f"{profile.picture}"
-            except:
+            if profile.picture in ["", None]:
                 picture = ""
+            else:
+                picture = profile.picture
         except:
             return Response({"error": "Profile does not exist."}, status=404)
 
@@ -69,10 +69,10 @@ class DownloadCV(APIView):
         output_file_name = f"cv {user.first_name} {user.last_name}.pdf"
         html_content = render(request, template, context)
         source = html_content.content.decode()
-        pdf = pdfkit.from_string(source, False, options=options)
-        response = HttpResponse(pdf, content_type="application/pdf")
-        response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
-        return response
+        # pdf = pdfkit.from_string(source, False, options=options)
+        #response = HttpResponse(pdf, content_type="application/pdf")
+        #response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
+        return HttpResponse(source)
 
 
 # Update the fields of the actual CV on the basis of the data in DB
