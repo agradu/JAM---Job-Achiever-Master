@@ -22,6 +22,11 @@ def run():
             last_name=last_name,
             email=email,
         )
+        "Chinese (Traditional)",
+        "Danish",
+        "Dutch",
+        "English",
+        "Esperanto",
         user.set_password(password)
         user.save()
         print(f"User {username} created!")
@@ -106,7 +111,7 @@ def run():
         profile=profile,
         title="Call Agent",
         company="Shoelando",
-        description="I provided assistance and technical support to the custormers in a friendly and polite manner"
+        description="I provided assistance and technical support to the custormers in a friendly and polite manner",
         start_date="2018-08-01",
         end_date="2021-07-31",
     )
@@ -137,21 +142,47 @@ def run():
     ProfileHobby.objects.get_or_create(
         profile=profile,
         description="Reading"
-    )ProfileHobby.objects.get_or_create(
-        profile=profile,
-        description="Board game, reading",
     )
 
     ProfileLanguage.objects.get_or_create(
         profile=profile,
-        description="English, German",
+        description="English B2"
+    )
+    
+    ProfileLanguage.objects.get_or_create(
+        profile=profile,
+        description="German C1"
     )
 
     application, created = Application.objects.get_or_create(
         profile=profile,
-        position="Senior Developer",
-        company="Google",
-        description="Develop ...",
+        position="Senior Developer Low-Code / No-Code (all genders)",
+        company="Mazars GmbH & Co. KG",
+        description="""Bei Mazars kommen Menschen zusammen, die gemeinsam Großes schaffen. Unsere Story zeigt, was echtes Miteinander bewirkt – denn Wachstum ist unser fester Kurs. Gegründet in Europa und in der Welt zuhause, ist Mazars heute in über 95 Ländern vertreten. Gemeinsam leisten wir einen Beitrag für die wirtschaftlichen Grundlagen einer gerechten, prosperierenden Welt. Unsere fachliche Exzellenz in den Bereichen Wirtschaftsprüfung, Steuern, Recht, Accounting, Financial Advisory und Consulting macht uns zu vertrauensvollen Partnern unserer Mandant*innen. Um ihr Geschäft nachhaltig zu sichern und weiterzuentwickeln, sind unsere 47.000 Expert*innen jeden Tag weltweit aktiv – im Austausch über Länder- und Kulturgrenzen hinweg.
+Das erwartet Dich
+Die Leitung der Einrichtung und Wartung der Infrastruktur für das Team zur Automatisierung von Geschäftsprozessen obliegt deiner Verantwortung - jeweils in enger Zusammenarbeit mit den RPA und No-Code-Teams, um RPA- und No-Code-Lösungen nahtlos zu integrieren. 
+Du arbeitest eng mit dem Solution Architect bei der Erstellung von Infrastrukturanforderungen für RPA und No-Code/Low-Code Projekten zusammen.
+Du analysierst und bewertest mögliche Lösungen für RPA- und No-Code/Low-Code-Projekte und arbeitest mit der RPA-Plattform (UiPath) und verschiedenen no-code / low-code Plattformen, wie Power Automate, Betty Blocks o. Ä., um Bots und Apps zu entwickeln.
+Du unterstützt bei der ganzheitlichen Betrachtung, Optimierung und Dokumentation bestehender Anwendungen über deren Lebenszyklus hinweg.
+Die Sicherstellung der Systemkompatibilität und Unterstützung des Teams bei Rollouts gehören zu deinem Aufgabengebiet.
+Das bringst Du mit
+Abgeschlossenes Bachelor- oder (idealerweise) Masterstudium im Bereich Informatik, Wirtschaftsinformatik oder einer thematisch verwandten Studienrichtung
+Mehrjährige Berufserfahrung in der Prozessautomatisierung mit RPA , Low-Code und NO-Code Plattformen
+Solide Kenntnisse im SDLC und Erfahrung in agiler Projektentwicklung und Projektmanagement
+Grundlegende Kenntnisse im Umgang mit Cloud und DevOps und gute Programmiererfahrung mit VB.NET, C# oder Python.
+Grundlegende Kenntnisse in SharePoint, Azure, API, Power BI sowie erste Kenntnisse in HTML, CSS, JavaScript und anderen Programmiersprachen
+Kenntnisse im Qualitätsmanagement und Freude am Umgang mit Technologien und angewandter Kreativität in einem prüfungs- und steuerrechtsnahen Umfeld
+Hohes Maß an Flexibilität, Offenheit für neue und komplexe Herausforderungen und ausgeprägte analytische Problemlösungsfähigkeiten
+Kenntnisse im Aufbau und Betrieb von Infrastruktur-Architekturen sind von Vorteil
+Sehr gute Kommunikationsfähigkeiten in Deutsch und Englisch
+Darum Mazars
+Abwechslungsreiche Tätigkeiten in einem global agierenden Prüfungs- und Beratungsunternehmen
+Eine breite fachliche Ausrichtung mit viel Raum für Eigeninitiative und aktive Mitgestaltung
+Umfassende Aus- und Weiterbildungsprogramme, Förderung von Berufsexamina sowie weiteren berufsrelevanten Qualifizierungen
+Aktive Unterstützung persönlicher Stärken - Mitwirkung bei übergreifenden Projekten u.a. in den Bereichen Digitalisierung, Innovation, Diversity und Nachhaltigkeit
+Achtsamkeit als fester Bestandteil der Firmenidentität - Unternehmensweites Achtsamkeitsprogramm mit Coaching
+Eine attraktive und nachhaltige betriebliche Altersvorsorge sowie ein individuelles Wertkonto für flexible Lebensarbeitszeitgestaltung (z.B. Sabbatical oder Weiterbildung)
+Flexible Arbeitszeitmodelle, mobiles Arbeiten sowie über 30 Urlaubstage""",
         company_email="jude.smiley.python@gmail.com",
     )
 
