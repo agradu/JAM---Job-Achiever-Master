@@ -33,14 +33,14 @@ class DownloadCV(APIView):
             today = date.today()
             abs_path = os.path.abspath("")
             try:
-                picture = f"{abs_path}{profile.picture.url}"
+                picture = f"{profile.picture}"
             except:
-                picture = f"{abs_path}profile_pictures/cavaler.jpg"
+                picture = ""
         except:
             return Response({"error": "Profile does not exist."}, status=404)
 
         context = {
-            "picture": picture,  # http://127.0.0.1:8000/saved_files/profile_pictures/cavaler.jpg
+            "picture": picture,
             "first_name": user.first_name,
             "last_name": user.last_name,
             "birthday": profile.birthday,
@@ -64,7 +64,7 @@ class DownloadCV(APIView):
             "margin-right": "20mm",
             "margin-bottom": "20mm",
             "margin-left": "20mm",
-            "enable-local-file-access": True,
+            "enable-local-file-access": False,
         }
         output_file_name = f"cv {user.first_name} {user.last_name}.pdf"
         html_content = render(request, template, context)
