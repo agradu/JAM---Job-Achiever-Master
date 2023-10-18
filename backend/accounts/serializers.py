@@ -32,7 +32,6 @@ class UserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        # breakpoint()
         user = User(
             email=validated_data["email"],
             username=validated_data["username"],
