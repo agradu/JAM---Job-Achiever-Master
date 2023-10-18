@@ -23,8 +23,9 @@
 				<tr>
 					<td rowspan="2">
 						<div style="width: 200px; height: 200px; overflow: hidden; border-radius: 50%;">
-							<img src="{{ picture }}" class="img-fluid">
-						</img>
+							{% if picture != "" %}
+							<img src="{{ picture }}" class="img-fluid"></img>
+							{% endif %}
 						</div>
 					</td>
 					<td>
@@ -34,13 +35,13 @@
 				</tr>
 				<tr>
 					<td>
-						<p>{{ birthday }}</p>
+						<p>Date of bith: {{ birthday }}</p>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<h3>Details</h3>
-						<p><i class="fa-solid fa-location-dot"></i> <b>Adress</b><br>{{ address }}</p>
+						<p><i class="fa-solid fa-location-dot"></i> <b>Adress</b><br>{{ address|linebreaks }}</p>
 						<p><i class="fa-solid fa-phone"></i> <b>Phone</b><br>{{ phone }}</p>
 						<p><i class="fa-solid fa-envelope"></i> <b>Email</b><br>{{ email }}</p>
 						{% if portfolio != None and portfolio != "" %}
@@ -61,8 +62,8 @@
 						</p>
 						<h3 class="pt-3">Languages</h3>
 						<p>
-							{% for language in hobbies %}
-							<i class="fa-solid fa-code-commit"></i> Language nr 1<br>
+							{% for language in languages %}
+							<i class="fa-solid fa-code-commit"></i> {{ language }}<br>
 							{% endfor %}</p>
 					</td>
 					<td>
@@ -70,19 +71,21 @@
 						<p>{{ description }}</p>
 						<h3 class="pt-3 pb-1">Employment History</h3>
 						{% for i in experiences %}
-						<p><b>{{ i.title }}</b> - from {{ i.start_date|date:"d.m.Y" }} to {{ i.end_date|date:"d.m.Y" }}<br><b>{{ i.company }}</b></p>
-						<p>{{ i.description|linebreaks }}</p>
+						<p><b>{{ i.title }}</b> - from {{ i.start_date|date:"d.m.Y" }} to {{ i.end_date|date:"d.m.Y" }}<br>
+							<b>{{ i.company }}</b><br>
+						{{ i.description|linebreaks }}</p>
 						{% endfor %}
 						<h3 class="pt-3 pb-1">Education</h3>
 						{% for i in educations %}
-						<p><b>{{ i.title }}</b> - from {{ i.start_date|date:"d.m.Y" }} to {{ i.end_date|date:"d.m.Y" }}<br><b>{{ i.school }}</b></p>
-						<p>{{ i.description|linebreaks }}</p>
+						<p><b>{{ i.title }}</b> - from {{ i.start_date|date:"d.m.Y" }} to {{ i.end_date|date:"d.m.Y" }}<br>
+							<b>{{ i.school }}</b><br>
+						{{ i.description|linebreaks }}</p>
 						{% endfor %}
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="text-center">
-						{{ date }}
+						Written on {{ date }}
 					</td>
 				</tr>
 			</tbody>

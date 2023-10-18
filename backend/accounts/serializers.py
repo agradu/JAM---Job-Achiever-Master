@@ -20,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
         username = attrs.get("username")
         email = attrs.get("email")
 
-        # Verifiy if username or email allready exists
+        # Verify if username or email already exists
         if User.objects.filter(username=username).exists():
             raise serializers.ValidationError(
                 {"username": "You can't use this username."}
@@ -32,13 +32,12 @@ class UserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        #breakpoint()
         user = User(
-            email=validated_data['email'],
-            username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name']
+            email=validated_data["email"],
+            username=validated_data["username"],
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"],
         )
-        user.set_password(validated_data['password'])
+        user.set_password(validated_data["password"])
         user.save()
         return user
