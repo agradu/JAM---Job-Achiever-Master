@@ -1,3 +1,11 @@
-from django.test import TestCase
+from rest_framework.test import APITestCase
+from django.urls import reverse
+from dependencies.models import Language, Gender, Status
 
-# Create your tests here.
+
+class Dependencies(APITestCase):
+    def SetUp(self):
+        pass
+
+    def test_user_chooses_English(self):
+        pass
