@@ -72,7 +72,7 @@ class DownloadCV(APIView):
         pdf = pdfkit.from_string(source, False, options=options)
         response = HttpResponse(pdf, content_type="application/pdf")
         response["Content-Disposition"] = f'attachment; filename="{output_file_name}"'
-        return source
+        return response
 
 
 # Update the fields of the actual CV on the basis of the data in DB
