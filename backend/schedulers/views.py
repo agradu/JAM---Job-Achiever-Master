@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serialazers import SchedulerSerialazer
+from .serializers import SchedulerSerializer
 from .models import Scheduler
 
 # Create your views here.
@@ -8,5 +8,5 @@ from .models import Scheduler
 
 class SchedulerViewSet(viewsets.ModelViewSet):
     queryset = Scheduler.objects.all()
-    serializer_class = SchedulerSerialazer
+    serializer_class = SchedulerSerializer
     permission_classes = [permissions.IsAuthenticated]
