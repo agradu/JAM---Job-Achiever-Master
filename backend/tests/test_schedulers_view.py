@@ -3,11 +3,9 @@ from django.urls import reverse
 from schedulers.models import Scheduler
 
 
-
 class TestSchedulerViews(APITestCase):
     def setUp(self):
         self.register_url = reverse("scheduler")
-
         self.scheduler_data = {
             "user_email": "fake_user@example.com",
             "username": "fake_user",
@@ -29,12 +27,13 @@ class TestSchedulerViews(APITestCase):
             "recruiter_gender":"Male"
         }
 
+    
     def test_scheduler_cannot_create_with_no_data(self):
         res = self.client.post(self.register_url)
         self.assertEqual(res.status_code, 400)
 
     def test_scheduler_creation(self):
-        scheduler = Scheduler(**self.user_data)
+        scheduler = Scheduler(**self.scheduler_data)
         scheduler.save()
         res = self.client.post(self.register_url, self.scheduler_data, format="json")
         self.assertEqual(res.status_code, 201)
