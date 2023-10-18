@@ -7,3 +7,4 @@ __pycache__
 request.h
 schema.yml
 saved_files/profile_pictures/*
+.python-version
