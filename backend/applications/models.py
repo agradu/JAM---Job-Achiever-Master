@@ -1,10 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
 from profiles.models import Profile
-from dependencies import models as dependencies
-from datetime import datetime
-
-# Create your models here.
+from dependencies.models import Language, Status, Gender
+from django.utils import timezone
 
 
 class Application(models.Model):
@@ -19,21 +16,19 @@ class Application(models.Model):
     source = models.CharField(max_length=255, blank=True)
     recruiter_name = models.CharField(max_length=255, default="John Doe")
     recruiter_gender = models.ForeignKey(
-        dependencies.Gender, on_delete=models.SET_DEFAULT, default=1
+        Gender, on_delete=models.SET_DEFAULT, default=1
     )
     recruiter_position = models.CharField(max_length=255, default="CEO")
     application_language = models.ForeignKey(
-        dependencies.Language, on_delete=models.SET_DEFAULT, default=8
+        Language, on_delete=models.SET_DEFAULT, default=8
     )
-    status = models.ForeignKey(
-        dependencies.Status, on_delete=models.SET_DEFAULT, default=1
-    )
+    status = models.ForeignKey(Status, on_delete=models.SET_DEFAULT, default=1)
     status_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         """On save, update timestamps"""
-        self.status_date = datetime.now()
+        self.status_date = timezone.now()
         return super(Application, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
