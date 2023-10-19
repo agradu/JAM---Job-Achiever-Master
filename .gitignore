@@ -5,6 +5,5 @@ __pycache__
 *.pyc
 *.sqlite3
 request.http
-schema.yml
 saved_files/profile_pictures/*
 .python-version
