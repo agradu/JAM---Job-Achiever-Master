@@ -39,4 +39,4 @@ class Application(models.Model):
         return super(Application, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f"{self.position} - {self.company} ({self.created_at})"
+        return f"{self.position} - {self.company})"
