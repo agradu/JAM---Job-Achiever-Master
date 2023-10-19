@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dependencies.models import Gender
-from django.utils import timezone
+from datetime import date
 
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     picture = models.CharField(max_length=255, null=True, blank=True)
-    birthday = models.DateField(default=timezone.now)
+    birthday = models.DateField(default=date(2000, 1, 1))
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
