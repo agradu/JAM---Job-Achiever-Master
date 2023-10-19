@@ -19,7 +19,6 @@ class ApplicationTest(APITestCase):
 
         self.gender = Gender.objects.create(gender="Male")
         self.language = Language.objects.create(language="English")
-        self.status = Status.objects.create(status="Saved")
         self.profile = Profile.objects.create(user=self.user, gender=self.gender)
 
         self.APPLICATION_DATA = {
@@ -37,7 +36,7 @@ class ApplicationTest(APITestCase):
             "profile": self.profile.pk,
             "recruiter_gender": self.gender.pk,
             "application_language": self.language.pk,
-            "status": self.status.pk,
+            "status": "Saved"
         }
 
         self.token = Token.objects.create(user=self.user)
