@@ -56,8 +56,7 @@ paths:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this application.
+          type: string
         required: true
       tags:
       - api
@@ -76,8 +75,7 @@ paths:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this application.
+          type: string
         required: true
       tags:
       - api
@@ -108,8 +106,7 @@ paths:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this application.
+          type: string
         required: true
       tags:
       - api
@@ -139,8 +136,7 @@ paths:
       - in: path
         name: id
         schema:
-          type: integer
-        description: A unique integer value identifying this application.
+          type: string
         required: true
       tags:
       - api
@@ -180,150 +176,6 @@ paths:
       - tokenAuth: []
       responses:
         '200':
-          description: No response body
-  /api/v1/dependencies/gender/:
-    get:
-      operationId: api_v1_dependencies_gender_list
-      parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginatedGenderList'
-          description: ''
-    post:
-      operationId: api_v1_dependencies_gender_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Gender'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Gender'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Gender'
-      security:
-      - tokenAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gender'
-          description: ''
-  /api/v1/dependencies/gender/{id}/:
-    get:
-      operationId: api_v1_dependencies_gender_retrieve
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this gender.
-        required: true
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gender'
-          description: ''
-    put:
-      operationId: api_v1_dependencies_gender_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this gender.
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Gender'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Gender'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Gender'
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gender'
-          description: ''
-    patch:
-      operationId: api_v1_dependencies_gender_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this gender.
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedGender'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedGender'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedGender'
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gender'
-          description: ''
-    delete:
-      operationId: api_v1_dependencies_gender_destroy
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this gender.
-        required: true
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '204':
           description: No response body
   /api/v1/dependencies/language/:
     get:
@@ -461,150 +313,6 @@ paths:
         schema:
           type: integer
         description: A unique integer value identifying this language.
-        required: true
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '204':
-          description: No response body
-  /api/v1/dependencies/status/:
-    get:
-      operationId: api_v1_dependencies_status_list
-      parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginatedStatusSerialazerList'
-          description: ''
-    post:
-      operationId: api_v1_dependencies_status_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StatusSerialazer'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/StatusSerialazer'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/StatusSerialazer'
-      security:
-      - tokenAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusSerialazer'
-          description: ''
-  /api/v1/dependencies/status/{id}/:
-    get:
-      operationId: api_v1_dependencies_status_retrieve
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this status.
-        required: true
-      tags:
-      - api
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusSerialazer'
-          description: ''
-    put:
-      operationId: api_v1_dependencies_status_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this status.
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StatusSerialazer'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/StatusSerialazer'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/StatusSerialazer'
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusSerialazer'
-          description: ''
-    patch:
-      operationId: api_v1_dependencies_status_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this status.
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedStatusSerialazer'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedStatusSerialazer'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedStatusSerialazer'
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusSerialazer'
-          description: ''
-    delete:
-      operationId: api_v1_dependencies_status_destroy
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this status.
         required: true
       tags:
       - api
@@ -2290,9 +1998,17 @@ components:
         recruiter_name:
           type: string
           maxLength: 255
+        recruiter_gender:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/RecruiterGenderEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
         recruiter_position:
           type: string
           maxLength: 255
+        status:
+          $ref: '#/components/schemas/StatusEnum'
         status_date:
           type: string
           format: date-time
@@ -2302,11 +2018,7 @@ components:
           readOnly: true
         profile:
           type: integer
-        recruiter_gender:
-          type: integer
         application_language:
-          type: integer
-        status:
           type: integer
       required:
       - company
@@ -2316,7 +2028,9 @@ components:
       - id
       - position
       - profile
-      - status_date
+    BlankEnum:
+      enum:
+      - ''
     Education:
       type: object
       properties:
@@ -2377,17 +2091,16 @@ components:
       required:
       - id
       - profile
-    Gender:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        gender:
-          type: string
-          maxLength: 50
-      required:
-      - id
+    GenderEnum:
+      enum:
+      - male
+      - female
+      - other
+      type: string
+      description: |-
+        * `male` - Male
+        * `female` - Female
+        * `other` - Other
     Language:
       type: object
       properties:
@@ -2411,6 +2124,9 @@ components:
           type: string
       required:
       - password
+    NullEnum:
+      enum:
+      - null
     PaginatedApplicationsList:
       type: object
       properties:
@@ -2471,26 +2187,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Experience'
-    PaginatedGenderList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Gender'
     PaginatedLanguageList:
       type: object
       properties:
@@ -2631,26 +2327,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SimulationSerialazer'
-    PaginatedStatusSerialazerList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusSerialazer'
     PasswordChange:
       type: object
       properties:
@@ -2723,9 +2399,17 @@ components:
         recruiter_name:
           type: string
           maxLength: 255
+        recruiter_gender:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/RecruiterGenderEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
         recruiter_position:
           type: string
           maxLength: 255
+        status:
+          $ref: '#/components/schemas/StatusEnum'
         status_date:
           type: string
           format: date-time
@@ -2735,11 +2419,7 @@ components:
           readOnly: true
         profile:
           type: integer
-        recruiter_gender:
-          type: integer
         application_language:
-          type: integer
-        status:
           type: integer
     PatchedEducation:
       type: object
@@ -2795,15 +2475,6 @@ components:
           nullable: true
         profile:
           type: integer
-    PatchedGender:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        gender:
-          type: string
-          maxLength: 50
     PatchedLanguage:
       type: object
       properties:
@@ -2826,6 +2497,12 @@ components:
         birthday:
           type: string
           format: date
+        gender:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/GenderEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
         phone:
           type: string
           nullable: true
@@ -2849,8 +2526,6 @@ components:
           nullable: true
           maxLength: 100
         user:
-          type: integer
-        gender:
           type: integer
     PatchedProfileHobby:
       type: object
@@ -2933,15 +2608,6 @@ components:
           type: integer
         language:
           type: integer
-    PatchedStatusSerialazer:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          maxLength: 100
     PatchedUserDetails:
       type: object
       description: User model w/o password
@@ -2980,6 +2646,12 @@ components:
         birthday:
           type: string
           format: date
+        gender:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/GenderEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
         phone:
           type: string
           nullable: true
@@ -3004,10 +2676,7 @@ components:
           maxLength: 100
         user:
           type: integer
-        gender:
-          type: integer
       required:
-      - gender
       - id
       - user
     ProfileHobby:
@@ -3055,6 +2724,16 @@ components:
       required:
       - id
       - profile
+    RecruiterGenderEnum:
+      enum:
+      - male
+      - female
+      - other
+      type: string
+      description: |-
+        * `male` - Male
+        * `female` - Female
+        * `other` - Other
     RestAuthDetail:
       type: object
       properties:
@@ -3120,17 +2799,20 @@ components:
       - created_at
       - id
       - user
-    StatusSerialazer:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          maxLength: 100
-      required:
-      - id
+    StatusEnum:
+      enum:
+      - Saved
+      - Applied
+      - Scheduled
+      - Accepted
+      - Rejected
+      type: string
+      description: |-
+        * `Saved` - Saved
+        * `Applied` - Applied
+        * `Scheduled` - Scheduled
+        * `Accepted` - Accepted
+        * `Rejected` - Rejected
     Token:
       type: object
       description: Serializer for Token model.

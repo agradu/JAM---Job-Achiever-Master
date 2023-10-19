@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from profiles.models import Profile
-from dependencies.models import Gender, Language, Status
+from dependencies.models import Language
 from django.urls import reverse
 from .models import Application
 
@@ -18,7 +18,7 @@ class ApplicationTest(APITestCase):
         user.save()
         self.user = user
 
-        self.gender = Gender.objects.create(gender="Male")
+        self.gender ="male"
         self.language = Language.objects.create(language="English")
         self.profile = Profile.objects.create(user=self.user, gender=self.gender)
 
@@ -35,7 +35,7 @@ class ApplicationTest(APITestCase):
             "recruiter_position": "string",
             "status_date": "2023-10-18T19:41:11.619Z",
             "profile": self.profile.pk,
-            "recruiter_gender": self.gender.pk,
+            "recruiter_gender": self.gender,
             "application_language": self.language.pk,
             "status": "Saved",
         }

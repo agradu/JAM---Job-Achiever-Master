@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from simulations.models import Simulation
 from applications.models import Application
 from profiles.models import Profile
-from dependencies.models import Language, Gender, Status
+from dependencies.models import Language
 from django.urls import reverse
-from datetime import datetime, timezone
+from datetime import datetime
 
 # Create your tests here.
 class SimulationTest(APITestCase):
@@ -17,9 +17,9 @@ class SimulationTest(APITestCase):
         self.user = User.objects.create(username="test")
         self.user.set_password("1235678")
         self.user.save()
-        self.gender = Gender.objects.create(gender="Male")
+        self.gender = "Male"
         self.language = Language.objects.create(language="English")
-        self.status = Status.objects.create(status="Saved")
+        self.status = "Saved"
         self.profile = Profile.objects.create(user=self.user, gender=self.gender)
         self.application = Application.objects.create(
             profile=self.profile,

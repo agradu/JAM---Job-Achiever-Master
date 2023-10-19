@@ -1,6 +1,6 @@
 from django.db import models
 from profiles.models import Profile
-from dependencies.models import Language, Status, Gender
+from dependencies.models import Language
 from django.utils import timezone
 
 
@@ -15,13 +15,10 @@ class Application(models.Model):
     company_address = models.CharField(max_length=255, blank=True)
     source = models.CharField(max_length=255, blank=True)
     recruiter_name = models.CharField(max_length=255, default="John Doe")
-    recruiter_gender = models.ForeignKey(
-        Gender, on_delete=models.SET_DEFAULT, default=1
-    )
+    recruiter_gender = models.CharField(max_length=50, null=True, blank=True, choices=
+[('male', 'Male'), ('female', 'Female'), ('other', 'Other')])
     recruiter_position = models.CharField(max_length=255, default="CEO")
-    application_language = models.ForeignKey(
-        Language, on_delete=models.SET_DEFAULT, default=8
-    )
+    application_language = models.ForeignKey(Language, on_delete=models.SET_DEFAULT, default=8)
     status = models.CharField(
         max_length=255,
         default="Saved",
