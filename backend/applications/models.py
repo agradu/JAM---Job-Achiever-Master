@@ -22,13 +22,17 @@ class Application(models.Model):
     application_language = models.ForeignKey(
         Language, on_delete=models.SET_DEFAULT, default=8
     )
-    status = models.CharField(max_length=255, default="Saved", choices=[
-        ('Saved', 'Saved'),
-        ('Applied', 'Applied'),
-        ('Scheduled', 'Scheduled'),
-        ('Accepted', 'Accepted'),
-        ('Rejected', 'Rejected')
-    ])
+    status = models.CharField(
+        max_length=255,
+        default="Saved",
+        choices=[
+            ("Saved", "Saved"),
+            ("Applied", "Applied"),
+            ("Scheduled", "Scheduled"),
+            ("Accepted", "Accepted"),
+            ("Rejected", "Rejected"),
+        ],
+    )
     status_date = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
 
