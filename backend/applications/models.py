@@ -29,7 +29,7 @@ class Application(models.Model):
         ('Accepted', 'Accepted'),
         ('Rejected', 'Rejected')
     ])
-    status_date = models.DateTimeField()
+    status_date = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
