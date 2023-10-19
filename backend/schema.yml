@@ -1531,6 +1531,33 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/v1/registration/register/:
+    post:
+      operationId: api_v1_registration_register_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
   /api/v1/schedulers/:
     get:
       operationId: api_v1_schedulers_list
@@ -1550,7 +1577,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedSchedulerSerialazerList'
+                $ref: '#/components/schemas/PaginatedSchedulerList'
           description: ''
     post:
       operationId: api_v1_schedulers_create
@@ -1560,13 +1587,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SchedulerSerialazer'
+              $ref: '#/components/schemas/Scheduler'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SchedulerSerialazer'
+              $ref: '#/components/schemas/Scheduler'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/SchedulerSerialazer'
+              $ref: '#/components/schemas/Scheduler'
         required: true
       security:
       - tokenAuth: []
@@ -1575,7 +1602,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SchedulerSerialazer'
+                $ref: '#/components/schemas/Scheduler'
           description: ''
   /api/v1/schedulers/{id}/:
     get:
@@ -1596,7 +1623,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SchedulerSerialazer'
+                $ref: '#/components/schemas/Scheduler'
           description: ''
     put:
       operationId: api_v1_schedulers_update
@@ -1613,13 +1640,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SchedulerSerialazer'
+              $ref: '#/components/schemas/Scheduler'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SchedulerSerialazer'
+              $ref: '#/components/schemas/Scheduler'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/SchedulerSerialazer'
+              $ref: '#/components/schemas/Scheduler'
         required: true
       security:
       - tokenAuth: []
@@ -1628,7 +1655,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SchedulerSerialazer'
+                $ref: '#/components/schemas/Scheduler'
           description: ''
     patch:
       operationId: api_v1_schedulers_partial_update
@@ -1645,13 +1672,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedSchedulerSerialazer'
+              $ref: '#/components/schemas/PatchedScheduler'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedSchedulerSerialazer'
+              $ref: '#/components/schemas/PatchedScheduler'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedSchedulerSerialazer'
+              $ref: '#/components/schemas/PatchedScheduler'
       security:
       - tokenAuth: []
       responses:
@@ -1659,7 +1686,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SchedulerSerialazer'
+                $ref: '#/components/schemas/Scheduler'
           description: ''
     delete:
       operationId: api_v1_schedulers_destroy
@@ -2084,33 +2111,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDetails'
-          description: ''
-  /registration/:
-    post:
-      operationId: registration_create
-      tags:
-      - registration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/User'
-        required: true
-      security:
-      - tokenAuth: []
-      - {}
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
           description: ''
   /schema/download/:
     get:
@@ -2591,7 +2591,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProfileSkill'
-    PaginatedSchedulerSerialazerList:
+    PaginatedSchedulerList:
       type: object
       properties:
         count:
@@ -2610,7 +2610,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/SchedulerSerialazer'
+            $ref: '#/components/schemas/Scheduler'
     PaginatedSimulationSerialazerList:
       type: object
       properties:
@@ -2821,8 +2821,8 @@ components:
           readOnly: true
         picture:
           type: string
-          format: uri
           nullable: true
+          maxLength: 255
         birthday:
           type: string
           format: date
@@ -2888,7 +2888,7 @@ components:
           maxLength: 50
         profile:
           type: integer
-    PatchedSchedulerSerialazer:
+    PatchedScheduler:
       type: object
       properties:
         id:
@@ -2975,8 +2975,8 @@ components:
           readOnly: true
         picture:
           type: string
-          format: uri
           nullable: true
+          maxLength: 255
         birthday:
           type: string
           format: date
@@ -3063,7 +3063,7 @@ components:
           readOnly: true
       required:
       - detail
-    SchedulerSerialazer:
+    Scheduler:
       type: object
       properties:
         id:
