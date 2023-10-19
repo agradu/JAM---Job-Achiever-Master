@@ -4,6 +4,6 @@ venv
 __pycache__
 *.pyc
 *.sqlite3
-request.h
+request.http
 saved_files/profile_pictures/*
 .python-version
