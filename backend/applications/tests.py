@@ -4,6 +4,7 @@ from rest_framework.authtoken.models import Token
 from profiles.models import Profile
 from dependencies.models import Gender, Language, Status
 from django.urls import reverse
+from .models import Application
 
 
 # Create your tests here.
@@ -36,11 +37,43 @@ class ApplicationTest(APITestCase):
             "profile": self.profile.pk,
             "recruiter_gender": self.gender.pk,
             "application_language": self.language.pk,
-            "status": "Saved"
+            "status": "Saved",
         }
 
         self.token = Token.objects.create(user=self.user)
         self.token_header = f"Token {self.token.key}"
+
+    def test_application_get_all(self):
+        Application.objects.create(
+            profile=self.profile,
+            position="front",
+            company="test",
+            description="test",
+            company_email="test@test.com",
+            application_language=self.language,
+            recruiter_gender=self.gender,
+        )
+        self.client.credentials(HTTP_AUTHORIZATION=self.token_header)
+        res = self.client.get(self.application_route)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.data.get("results", [])), 1)
+
+    def test_application_get_all_when_not_owner(self):
+        user = User.objects.create(username="test2")
+        profile = Profile.objects.create(user=user, gender=self.gender)
+        Application.objects.create(
+            profile=profile,
+            position="front",
+            company="test",
+            description="test",
+            company_email="test@test.com",
+            application_language=self.language,
+            recruiter_gender=self.gender,
+        )
+        self.client.credentials(HTTP_AUTHORIZATION=self.token_header)
+        res = self.client.get(self.application_route)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.data.get("results", [])), 0)
 
     def test_application_post(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.token_header)
