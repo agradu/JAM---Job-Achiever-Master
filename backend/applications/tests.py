@@ -35,11 +35,9 @@ class ApplicationTest(APITestCase):
             "recruiter_position": "string",
             "status_date": "2023-10-18T19:41:11.619Z",
             "profile": self.profile.pk,
-            # TODO: refactor to be a CharField / Enum
             "recruiter_gender": self.gender.pk,
             "application_language": self.language.pk,
-            # TODO: refactor to be a CharField / Enum
-            "status": self.status.pk,  # I don't like this having to be in a table -- it can be a CharField / Enum
+            "status": self.status.pk,
         }
 
         self.token = Token.objects.create(user=self.user)
