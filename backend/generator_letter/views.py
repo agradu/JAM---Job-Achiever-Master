@@ -2,7 +2,6 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
 from profiles.models import (
-    Profile,
     Education,
     Experience,
     ProfileSkill,
@@ -29,7 +28,7 @@ class DownloadCoverLetter(APIView):
             user = profile.user
             today = date.today()
         except:
-            return Response({"error": "Profile does not exist."}, status=404)
+            return Response({"error": "Application does not exist."}, status=404)
 
         context = {
             "first_name": user.first_name,
@@ -65,7 +64,7 @@ class DownloadCoverLetter(APIView):
 
 # Update the fields of the cover letter on the basis of the data in DB
 class UpdateCoverLetterWithGPT(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, pk):
         try:
@@ -80,7 +79,7 @@ class UpdateCoverLetterWithGPT(APIView):
 
             formated_info = ""
             formated_info += "CANDIDATE PERSONAL DATES: "
-            formated_info += f"{user.first_name} {user.last_name} ({profile.gender.gender}), born on {profile.birthday.strftime('%d.%m.%Y')}.\n\n"
+            formated_info += f"{user.first_name} {user.last_name} ({profile.gender}), born on {profile.birthday.strftime('%d.%m.%Y')}.\n\n"
             formated_info += "CANDIDATE EDUCATION:\n\n"
             for i in education_list:
                 formated_info += f"{i.start_date.strftime('%d.%m.%Y')}-{i.end_date.strftime('%d.%m.%Y')} in {i.school}\nTitle: {i.title}\nDescription:\n{i.description}\n\n"
@@ -107,14 +106,12 @@ class UpdateCoverLetterWithGPT(APIView):
 Based on the input you receive, you will compose the content of a cover letter for the desired job based only on the data provided.
 Provide only the body text of the cover letter without header or footer.
 Don't mention unnecesary informations from my experience or education.
-Write the text of the letter in {application.application_language} in a concise and bold style suitable for the job to which the candidate is applying.
+Write the text Profileof the letter in {application.application_language} in a concise and bold style suitable for the job to which the candidate is applying.
 You don't ask questions or say anything other than the content of the cover letter."""
-
             messages = [
                 gpt.bot_message("system", role_description),
                 gpt.bot_message("user", formated_info),
             ]
-
             try:
                 if profile.api_key not in ["", None]:
                     gpt.openai.api_key = profile.api_key
@@ -144,4 +141,4 @@ John Doe"""
             application.save()
             return Response({"response": response})
         except:
-            return Response({"error": "Profile does not exist."}, status=404)
+            return Response({"error": "Application does not exist."}, status=404)
