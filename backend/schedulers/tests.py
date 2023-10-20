@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from applications.models import Application
 from profiles.models import Profile
-from dependencies.models import Gender, Language, Status
+from dependencies.models import Language
 from django.utils import timezone
 import datetime
 from django.urls import reverse
@@ -17,9 +17,9 @@ class SchedulerTest(APITestCase):
         self.schedule_route = reverse("scheduler-list")
 
         self.user = User.objects.create(username="test", password="123")
-        self.gender = Gender.objects.create(gender="Male")
+        self.gender = "Male"
         self.language = Language.objects.create(language="English")
-        self.status = Status.objects.create(status="Saved")
+        self.status = "Saved"
         self.profile = Profile.objects.create(user=self.user, gender=self.gender)
         self.application = Application.objects.create(
             profile=self.profile,

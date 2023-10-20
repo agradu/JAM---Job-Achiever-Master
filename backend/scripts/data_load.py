@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
-from dependencies.models import *
-from profiles.models import *
+from dependencies.models import Language
+from profiles.models import Education, Profile, Experience, ProfileSkill, ProfileLanguage, ProfileHobby
 from applications.models import Application
 from schedulers.models import Scheduler
-from datetime import datetime
 
 
 def run():
@@ -72,19 +71,9 @@ def run():
     for language in languages:
         Language.objects.get_or_create(language=language)
 
-    genders = ["Male", "Female", "Other"]
-
-    for gender in genders:
-        Gender.objects.get_or_create(gender=gender)
-
-    statuses = ["Saved", "Applied", "Scheduled", "Accepted", "Rejected"]
-
-    for status in statuses:
-        Status.objects.get_or_create(status=status)
-
     profile, created = Profile.objects.get_or_create(
         user=user,
-        gender=Gender.objects.get(gender="Male"),
+        gender="male",
         phone="(+44) 0123456789",
         birthday="1995-03-28",
         address="11 The Spires, Canterbury CT2 8SD, UK",

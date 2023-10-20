@@ -2,9 +2,9 @@ from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from profiles.models import Profile
-from dependencies.models import Gender, Language, Status
-from datetime import datetime, timedelta
+from dependencies.models import Language
 from django.urls import reverse
+from .models import Application
 
 
 # Create your tests here.
@@ -18,7 +18,7 @@ class ApplicationTest(APITestCase):
         user.save()
         self.user = user
 
-        self.gender = Gender.objects.create(gender="Male")
+        self.gender ="male"
         self.language = Language.objects.create(language="English")
         self.profile = Profile.objects.create(user=self.user, gender=self.gender)
 
@@ -35,13 +35,45 @@ class ApplicationTest(APITestCase):
             "recruiter_position": "string",
             "status_date": "2023-10-18T19:41:11.619Z",
             "profile": self.profile.pk,
-            "recruiter_gender": self.gender.pk,
+            "recruiter_gender": self.gender,
             "application_language": self.language.pk,
-            "status": "Saved"
+            "status": "Saved",
         }
 
         self.token = Token.objects.create(user=self.user)
         self.token_header = f"Token {self.token.key}"
+
+    def test_application_get_all(self):
+        Application.objects.create(
+            profile=self.profile,
+            position="front",
+            company="test",
+            description="test",
+            company_email="test@test.com",
+            application_language=self.language,
+            recruiter_gender=self.gender,
+        )
+        self.client.credentials(HTTP_AUTHORIZATION=self.token_header)
+        res = self.client.get(self.application_route)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.data.get("results", [])), 1)
+
+    def test_application_get_all_when_not_owner(self):
+        user = User.objects.create(username="test2")
+        profile = Profile.objects.create(user=user, gender=self.gender)
+        Application.objects.create(
+            profile=profile,
+            position="front",
+            company="test",
+            description="test",
+            company_email="test@test.com",
+            application_language=self.language,
+            recruiter_gender=self.gender,
+        )
+        self.client.credentials(HTTP_AUTHORIZATION=self.token_header)
+        res = self.client.get(self.application_route)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.data.get("results", [])), 0)
 
     def test_application_post(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.token_header)

@@ -8,17 +8,3 @@ class Language(models.Model):
 
     def __str__(self):
         return self.language
-
-
-class Gender(models.Model):
-    gender = models.CharField(max_length=50, default="Male", unique=True)
-
-    def __str__(self):
-        return self.gender
-
-
-class Status(models.Model):
-    status = models.CharField(max_length=100, default="Saved", unique=True)
-
-    def __str__(self):
-        return self.status

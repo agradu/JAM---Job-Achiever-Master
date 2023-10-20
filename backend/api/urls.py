@@ -30,8 +30,6 @@ urlpatterns = [
     path("api/v1/profiles/", include("profiles.urls")),
     path("api/v1/simulations/", include("simulations.urls")),
     path("api/v1/email_sender/", include("email_sender.urls")),
-    # run BEFORE the command:
-    # "python manage.py spectacular --file schema.yml"
     path("schema/download/", SpectacularAPIView.as_view(), name="schema"),
     path("schema/docs/", SpectacularSwaggerView.as_view(url_name="schema")),
 ]

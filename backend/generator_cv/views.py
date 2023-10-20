@@ -30,7 +30,6 @@ class DownloadCV(APIView):
             language_list = ProfileLanguage.objects.filter(profile=profile)
             hobby_list = ProfileHobby.objects.filter(profile=profile)
             today = date.today()
-            abs_path = os.path.abspath("")
             if profile.picture in ["", None]:
                 picture = ""
             else:
@@ -91,7 +90,7 @@ class UpdateCvDescriptionWithGPT(APIView):
 
             formated_info = ""
             formated_info += "CANDIDATE PERSONAL DATES: "
-            formated_info += f"{user.first_name} {user.last_name} ({profile.gender.gender}), born on {profile.birthday.strftime('%d.%m.%Y')}.\n\n"
+            formated_info += f"{user.first_name} {user.last_name} ({profile.gender}), born on {profile.birthday.strftime('%d.%m.%Y')}.\n\n"
             formated_info += "CANDIDATE EDUCATION:\n\n"
             for i in education_list:
                 formated_info += f"{i.start_date.strftime('%d.%m.%Y')}-{i.end_date.strftime('%d.%m.%Y')} in {i.school}\nTitle: {i.title}\nDescription:\n{i.description}\n\n"

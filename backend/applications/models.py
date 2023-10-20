@@ -1,6 +1,6 @@
 from django.db import models
 from profiles.models import Profile
-from dependencies.models import Language, Status, Gender
+from dependencies.models import Language
 from django.utils import timezone
 
 
@@ -15,20 +15,21 @@ class Application(models.Model):
     company_address = models.CharField(max_length=255, blank=True)
     source = models.CharField(max_length=255, blank=True)
     recruiter_name = models.CharField(max_length=255, default="John Doe")
-    recruiter_gender = models.ForeignKey(
-        Gender, on_delete=models.SET_DEFAULT, default=1
-    )
+    recruiter_gender = models.CharField(max_length=50, null=True, blank=True, choices=
+[('male', 'Male'), ('female', 'Female'), ('other', 'Other')])
     recruiter_position = models.CharField(max_length=255, default="CEO")
-    application_language = models.ForeignKey(
-        Language, on_delete=models.SET_DEFAULT, default=8
+    application_language = models.ForeignKey(Language, on_delete=models.SET_DEFAULT, default=8)
+    status = models.CharField(
+        max_length=255,
+        default="Saved",
+        choices=[
+            ("Saved", "Saved"),
+            ("Applied", "Applied"),
+            ("Scheduled", "Scheduled"),
+            ("Accepted", "Accepted"),
+            ("Rejected", "Rejected"),
+        ],
     )
-    status = models.CharField(max_length=255, default="Saved", choices=[
-        ('Saved', 'Saved'),
-        ('Applied', 'Applied'),
-        ('Scheduled', 'Scheduled'),
-        ('Accepted', 'Accepted'),
-        ('Rejected', 'Rejected')
-    ])
     status_date = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -38,4 +39,4 @@ class Application(models.Model):
         return super(Application, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f"{self.position} - {self.company} ({self.created_at})"
+        return f"{self.position} - {self.company})"
