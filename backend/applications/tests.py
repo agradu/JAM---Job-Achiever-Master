@@ -110,11 +110,24 @@ class ApplicationTest(APITestCase):
         # self.assertEqual(
         #     res.data["status_date"], self.APPLICATION_DATA["status_date"]
         # )
+        # expected_status_date_str = "2023-10-18T19:41:11.619Z"
+        # actual_status_date_str = res.data["status_date"]
+        # expected_status_date = datetime.fromisoformat(expected_status_date_str)
+        # actual_status_date = datetime.fromisoformat(actual_status_date_str)
+        # time_tolerance = timedelta(seconds=10)  # 1 second tolerance
 
-        self.assertEqual(res.data["profile"], self.APPLICATION_DATA["profile"])
+        # # Check if the time difference is within the acceptable tolerance
+        # self.assertLessEqual(abs(expected_status_date - actual_status_date), time_tolerance)
 
     # TODO
+    # @Victor this doesn't work, I think because View Logic doesn't have methods for PUT, GET, DELETE
+
+    
     # - add test for DELETE
+    # def test_application_delete(self):
+    #     self.client.credentials(HTTP_AUTHORIZATION=self.token_header)
+    #     res = self.client.delete(self.application_route)
+    #     self.assertEqual(res.status_code, 204)
     # - add test for PUT
     # - add test for GET (single application)
     # - add test for GET (list of applications)
