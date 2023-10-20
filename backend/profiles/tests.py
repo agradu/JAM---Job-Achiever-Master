@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase, APIClient
 from .models import Profile, Education, Experience, ProfileSkill, ProfileHobby, ProfileLanguage
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from dependencies.models import Gender, Language, Status
+from dependencies.models import Language
 from django.urls import reverse
 
 # Create your tests here.
@@ -12,9 +12,9 @@ class ProfileTest(APITestCase):
         self.profile_route = reverse("profile-list")
 
         self.user = User.objects.create(username="semen", password="123")
-        self.gender = Gender.objects.create(gender="Male")
+        self.gender = "male"
         self.language = Language.objects.create(language="English")
-        self.status = Status.objects.create(status="Saved")
+        self.status = "Saved"
         self.profile = Profile.objects.create(user=self.user, gender=self.gender, birthday="2000-10-18")
         self.education = Education.objects.create(profile=self.profile, title="education title", start_date="2020-10-18", end_date="2023-10-18")
         self.experience = Experience.objects.create(profile=self.profile, title="experience title", company="company title", description="company description", start_date="2020-10-18", end_date="2023-10-18")
@@ -26,8 +26,8 @@ class ProfileTest(APITestCase):
             "user": self.user.pk,
             "profile": self.profile.pk,
             "language": self.language.pk,
-            "gender": self.gender.pk,
-            "status": self.status.pk,
+            "gender": "male",
+            "status": "Saved",
             "education": self.education.pk,
             "experience": self.experience.pk,
             "profile_skill": self.profile_skill.pk,
