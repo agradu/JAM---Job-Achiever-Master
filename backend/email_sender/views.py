@@ -13,7 +13,7 @@ class Sendmail(APIView):
         try:
             application = Application.objects.get(pk=request.data["pk"])
             body = application.cover_letter_text
-            body += f"\n\nhttp://localhost:8000/api/v1/cv_generator/pdf/{request.data['pk']}/"
+            body += f"\n\nhttp://18.157.164.150/api/v1/cv_generator/pdf/{request.data['pk']}/"
 
             # Create and send the email with the attached file
             email = mail.EmailMessage(
