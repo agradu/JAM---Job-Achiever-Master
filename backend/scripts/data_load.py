@@ -21,11 +21,6 @@ def run():
             last_name=last_name,
             email=email,
         )
-        "Chinese (Traditional)",
-        "Danish",
-        "Dutch",
-        "English",
-        "Esperanto",
         user.set_password(password)
         user.save()
         print(f"User {username} created!")
